@@ -46,6 +46,7 @@ alias v='vim'
 alias clipkey='cat ~/.ssh/id_rsa.pub > /dev/clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
+alias vagrantsup='vagrant up && vagrant ssh'
 
 # History
 history -a
