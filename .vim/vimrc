@@ -1,9 +1,12 @@
+" @mtheunissen82 vimrc
+
 set nocompatible
 
+" vim-plug {{{
 runtime plugged/vim-plug/plug.vim
 call plug#begin('~/.vim/plugged')
 
-" Plugins
+" Plugins {{{
 Plug 'easymotion/vim-easymotion'
 Plug 'evidens/vim-twig'
 Plug 'haya14busa/incsearch.vim'
@@ -22,12 +25,15 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/YankRing.vim'
+" }}}
 
-" Themes
+" Themes {{{
 Plug 'sickill/vim-monokai'
 Plug 'w0ng/vim-hybrid'
+" }}}
 
 call plug#end()
+" }}}
 
 " Set internal encoding and default encoding for files to utf-8
 set encoding=utf-8
@@ -211,7 +217,7 @@ endfun
 
 autocmd FileType php,javascript,twig,yml,html,xml,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-" NERDTree plugin
+" Plugin: NERDTree {{{
 map <Leader>e :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize=50
@@ -222,8 +228,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Close vim when NERDTree is the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" }}}
 
-" incsearch.vim plugin
+" Plugin: incsearch.vim {{{
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -238,14 +245,20 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+" }}}
 
-" fzf plugin
+" Plugin: FZF {{{
 let $FZF_DEFAULT_COMMAND = 'ag --all-types --hidden --ignore-case -g ""'
 nnoremap <silent> <C-P> :FZF -x<CR>
 nmap <Leader>p :FZF -x<CR>
+" }}}
 
-" vim.ack plugin
+" Plugin: Ack {{{
 :let g:ackprg = 'ag --all-types --ignore-case --hidden --vimgrep'
+" }}}
 
-" rainbow plugin
+" Plugin: Rainbow {{{
 let g:rainbow_active = 1
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
