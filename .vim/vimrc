@@ -66,7 +66,7 @@ set relativenumber
 set hidden
 
 " Change <Leader> to space
-let mapleader=" "
+let mapleader=","
 
 " Let vim help me with indenting
 set smartindent
@@ -116,6 +116,9 @@ set cpoptions+=$
 
 " I want to be able to go anywhere with my cursor
 set virtualedit=all
+
+" Show current command in statusline
+set showcmd
 
 " Fix my frequently wrong typed Wq (etc.) when quiting vim
 command WQ wq
@@ -181,6 +184,10 @@ map ;; $
 " Make j/k realy move one line down/up
 nnoremap j gj
 nnoremap k gk
+
+" Make ,o and ,O in insert mode behave similar o and O in normal mode
+inoremap <Leader>o <Esc>o
+inoremap <Leader>O <Esc>O
 
 " Always do global search by default
 set gdefault
