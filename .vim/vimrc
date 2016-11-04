@@ -120,6 +120,9 @@ set virtualedit=all
 " Show current command in statusline
 set showcmd
 
+" Enable folding
+set foldenable
+
 " Fix my frequently wrong typed Wq (etc.) when quiting vim
 command WQ wq
 command Wq wq
