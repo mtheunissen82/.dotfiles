@@ -105,9 +105,9 @@ set splitbelow
 set splitright
 
 " Enable enhance menu when autocompleting (with <Tab>) on the commandline
-" Ignore case when completing file/dir names
 set wildmenu
 set wildignorecase
+set wildmode=list:longest
 
 " Save on buffer switch
 set autowrite
