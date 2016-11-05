@@ -3,11 +3,13 @@
 " Unleash vims power (bye bye Vi)
 set nocompatible
 
-" vim-plug {{{
+" Plug {{{
+
 runtime plugged/vim-plug/plug.vim
 call plug#begin('~/.vim/plugged')
 
 " Plugins {{{
+
 Plug 'easymotion/vim-easymotion'
 Plug 'evidens/vim-twig'
 Plug 'haya14busa/incsearch.vim'
@@ -27,15 +29,29 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/YankRing.vim'
+
 " }}}
 
 " Themes {{{
+
 Plug 'sickill/vim-monokai'
 Plug 'w0ng/vim-hybrid'
+
 " }}}
 
 call plug#end()
+
 " }}}
+
+" Colors {{{
+
+syntax enable
+set background=dark
+colorscheme hybrid
+
+" }}}
+
+" Misc {{{
 
 " Set internal encoding and default encoding for files to utf-8
 set encoding=utf-8
@@ -44,88 +60,15 @@ setglobal fileencoding=utf-8
 filetype on
 filetype plugin on
 filetype indent on
-syntax on
-
-" Enable theme
-syntax enable
-set background=dark
-colorscheme hybrid
-
-" Increase the number of history lines that are remembered
-set history=1000
-
-" Decrease the timeout to wait for mappings
-set timeoutlen=350
-
-" In absence of the statusline show the ruler
-set ruler
-
-" Dont wrap lines
-set nowrap
-
-" Use relative numbering instead of absolute
-set relativenumber
-
-" Allow buffers to be hidden (unsaved) when closing a window
-set hidden
 
 " Change <Leader> to space
 let mapleader=","
 
-" Let vim help me with indenting
-set smartindent
+" Decrease the timeout to wait for mappings
+set timeoutlen=350
 
-" Copy the previous indentation on autoindenting
-set copyindent
-
-" Change tabs to 4 spaces
-set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smarttab
-
-" Round shifts to the nearest shiftwidth
-set shiftround
-
-" Always have 5 lines above or below the cursor when scrolling
-set scrolloff=5
-
-" When minimizing a window make it as small as possible
-set winminheight=0
-
-" Always show the status line
-set laststatus=2
-
-" Enable incremental searching
-set incsearch
-
-" Enable search highlighting
-set hlsearch
-
-" Dont use case-sensitive search (use smartcase when explicit case-sensitive is needed)
-set ignorecase
-set smartcase
-
-" When using :split pop new window below and when using :vsplit insert new window right
-set splitbelow
-set splitright
-
-" Enable enhance menu when autocompleting (with <Tab>) on the commandline
-set wildmenu
-set wildignorecase
-set wildmode=list:longest
-
-" Save on buffer switch
-set autowrite
-
-" Fancy c(hange) visualization
-set cpoptions+=$
-
-" I want to be able to go anywhere with my cursor
-set virtualedit=all
-
-" Show current command in statusline
-set showcmd
-
-" Enable folding
-set foldenable
+" Increase the number of history lines that are remembered
+set history=1000
 
 " Fix my frequently wrong typed Wq (etc.) when quiting vim
 command! WQ wq
@@ -133,79 +76,8 @@ command! Wq wq
 command! W w
 command! Q q
 
-" Type qq when you want to quit all open windows
-cmap qq qa
-
 " Add shortcut for saving readonly files
 command! WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
-" Make Tab and Backspace in normal mode behave the same as in insert mode
-nmap <Tab> i<Tab><Esc>
-nmap <Bs> i<Bs><Esc>
-
-" Map F5 to list and select buffers
-map <F5> :buffers<CR>:buffer<Space>
-
-" Disable Arrow keys in normal, visual and select and operator pending mode (hjkl training)
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Disable Arrow keys in insert mode (hjkl training)
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" Enable easy hjkl window navigation in normal mode
-nmap <C-h> <C-W>h
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-l> <C-W>l
-
-" Window resizing with arrow keys
-nmap <Up> <C-W>-
-nmap <Down> <C-W>+
-nmap <Left> <C-W>>
-nmap <Right> <C-W><
-
-" Enable (up/down) arrow window navigation with ALT key and make the current window
-" fullscreen, minimalize the others
-nmap <A-up> <C-W>k <C-W>_
-nmap <A-down> <C-W>j <C-W>_
-
-" Shorcut for making all windows equal sized
-nmap <A-=> <C-W>=
-
-" Create shortcut for Esc in insert mode (`^ makes sure the cursor stays at
-" the same position as before the Esc)
-imap jk <Esc>
-imap kj <Esc>
-inoremap <Esc> <Esc>`^
-
-" Shortcut for easy navigating to begin/end of line
-map aa ^
-map ;; $
-
-" Make j/k realy move one line down/up
-nnoremap j gj
-nnoremap k gk
-
-" Make ,o and ,O in insert mode behave similar o and O in normal mode
-inoremap <Leader>o <Esc>o
-inoremap <Leader>O <Esc>O
-
-" Always do global search by default
-set gdefault
-
-" By default apply 'very magic' search
-" All ASCII characters except '0'-'9', 'a'-'z', 'A'-'Z' and '_' have a special meaning.
-nnoremap / /\v
-vnoremap / /\v
-
-" Easy access to command mode
-nnoremap ; :
 
 " Save all files on losing focus:
 autocmd FocusLost * :wa
@@ -231,11 +103,183 @@ endfun
 
 autocmd FileType php,javascript,twig,yml,html,xml,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" }}}
+
+" UI Config {{{
+
+" In absence of the statusline show the ruler.
+" Show line and column number of the current cursor position
+set ruler
+
+" Dont wrap lines
+set nowrap
+
+" Show the current line
+set cursorline
+
+" Enable line numbering
+set number
+
+" Use relative numbering instead of absolute
+set relativenumber
+
+" Always have 5 lines above or below the cursor when scrolling
+set scrolloff=5
+
+" When minimizing a window make it as small as possible
+set winminheight=0
+
+" Always show the status line
+set laststatus=2
+
+" Fancy c(hange) visualization
+set cpoptions+=$
+
+" I want to be able to go anywhere with my cursor
+set virtualedit=all
+
+" Show current command in statusline
+set showcmd
+
+" Enable folding
+set foldenable
+
+" Enable enhance menu when autocompleting (with <Tab>) on the commandline
+set wildmenu
+set wildignorecase
+set wildmode=list:longest
+
+" }}}
+
+" Buffers {{{
+
+" Allow buffers to be hidden (unsaved) when closing a window
+set hidden
+
+" Save on buffer switch
+set autowrite
+
+" Map F5 to list and select buffers
+map <F5> :buffers<CR>:buffer<Space>
+
+" }}}
+
+" Tabs, Spaces and Indents {{{
+
+" Let vim help me with indenting
+set smartindent
+
+" Copy the previous indentation on autoindenting
+set copyindent
+
+" Change tabs to 4 spaces
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+
+" Round shifts to the nearest shiftwidth
+set shiftround
+
+" }}}
+
+" Search {{{
+
+" Enable incremental searching
+set incsearch
+
+" Enable search highlighting
+set hlsearch
+
+" Dont use case-sensitive search (use smartcase when explicit case-sensitive is needed)
+set ignorecase
+set smartcase
+
+" Always do global search by default
+set gdefault
+
+" By default apply 'very magic' search
+" All ASCII characters except '0'-'9', 'a'-'z', 'A'-'Z' and '_' have a special meaning.
+nnoremap / /\v
+vnoremap / /\v
+
+" }}}
+
+" Editing {{{
+
+" Disable Arrow keys in normal, visual and select and operator pending mode (hjkl training)
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in insert mode (hjkl training)
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Create shortcut for Esc in insert mode (`^ makes sure the cursor stays at
+" the same position as before the Esc)
+imap jk <Esc>
+imap kj <Esc>
+inoremap <Esc> <Esc>`^
+
+" Shortcut for easy navigating to begin/end of line
+map aa ^
+map ;; $
+
+" Make j/k realy move one line down/up
+nnoremap j gj
+nnoremap k gk
+
+" Make Tab and Backspace in normal mode behave the same as in insert mode
+nmap <Tab> i<Tab><Esc>
+nmap <Bs> i<Bs><Esc>
+
+" Make ,o and ,O in insert mode behave similar o and O in normal mode
+inoremap <Leader>o <Esc>o
+inoremap <Leader>O <Esc>O
+
 " Shortcut for editing my vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " Source my vimrc file after saving it
 autocmd bufwritepost .vimrc source $MYVIMRC
+
+" }}}
+
+" Windows {{{
+
+" When using :split pop new window below and when using :vsplit insert new window right
+set splitbelow
+set splitright
+
+" Enable easy hjkl window navigation in normal mode
+nmap <C-h> <C-W>h
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-l> <C-W>l
+
+" Window resizing with arrow keys
+nmap <Up> <C-W>-
+nmap <Down> <C-W>+
+nmap <Left> <C-W>>
+nmap <Right> <C-W><
+
+" Enable (up/down) arrow window navigation with ALT key and make the current window
+" fullscreen, minimalize the others
+nmap <A-up> <C-W>k <C-W>_
+nmap <A-down> <C-W>j <C-W>_
+
+" Shorcut for making all windows equal sized
+nmap <A-=> <C-W>=
+
+" Type qq when you want to quit all open windows
+cmap qq qa
+
+" }}}
 
 " Plugin: NERDTree {{{
 map <Leader>e :NERDTreeToggle<CR>
