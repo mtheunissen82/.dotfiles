@@ -1,5 +1,6 @@
 " @mtheunissen82 vimrc
 
+" Unleash vims power (bye bye Vi)
 set nocompatible
 
 " vim-plug {{{
@@ -40,7 +41,9 @@ call plug#end()
 set encoding=utf-8
 setglobal fileencoding=utf-8
 
-filetype plugin indent on
+filetype on
+filetype plugin on
+filetype indent on
 syntax on
 
 " Enable theme
@@ -125,16 +128,16 @@ set showcmd
 set foldenable
 
 " Fix my frequently wrong typed Wq (etc.) when quiting vim
-command WQ wq
-command Wq wq
-command W w
-command Q q
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
 
 " Type qq when you want to quit all open windows
 cmap qq qa
 
 " Add shortcut for saving readonly files
-command WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! WW :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Make Tab and Backspace in normal mode behave the same as in insert mode
 nmap <Tab> i<Tab><Esc>
@@ -227,6 +230,12 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd FileType php,javascript,twig,yml,html,xml,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" Shortcut for editing my vimrc
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Source my vimrc file after saving it
+autocmd bufwritepost .vimrc source $MYVIMRC
 
 " Plugin: NERDTree {{{
 map <Leader>e :NERDTreeToggle<CR>
