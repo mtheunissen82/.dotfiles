@@ -20,8 +20,13 @@ if [[ -f ~/.tmux.conf ]]; then
     mv ~/.tmux.conf ~/.tmux.conf.old
 fi
 
+if [[ -f ~/.tmux ]]; then
+    mv ~/.tmux ~/.tmux.old
+fi
+
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.vim ~/.vim
 ln -s ~/.dotfiles/.vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/.tmux ~/.tmux
