@@ -15,6 +15,7 @@ Plug 'evidens/vim-twig'
 Plug 'haya14busa/incsearch.vim'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'keith/tmux.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'luochen1990/rainbow'
 Plug 'majutsushi/tagbar'
