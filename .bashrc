@@ -56,6 +56,16 @@ export HISTCONTROL=ignorespace
 export HISTIGNORE='ls:history:ll'
 export HISTTIMEFORMAT='%d-%m-%Y %T '
 
+# Create a predictable SSH authentication socket location.
+# http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach#answer-76256
+SOCK="/tmp/ssh-agent-$USER"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+then
+    rm -f /tmp/ssh-agent-$USER
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
+
 # Git
 # Create g<alias> shortcuts for all git aliases and enable git autocompletion
 function_exists() {
