@@ -41,7 +41,6 @@ alias ll='ls -alh --color=auto'
 alias ls='ls --color=auto'
 alias mkdir='mkdir -p'
 alias cl='clear'
-alias sshgo='eval $(ssh-agent) && ssh-add'
 alias v='vim'
 alias clipkey='cat ~/.ssh/id_rsa.pub > /dev/clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -100,4 +99,13 @@ la() {
 # Generate a random password
 randpasswd() {
     tr -dc a-zA-Z0-9 < /dev/urandom | head -c${1:-32}; echo 1>&2;
+}
+
+# Shortcut fucntion to start ssh-agent and add keys
+sshgo() {
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+        eval $(ssh-agent) && ssh-add
+    else
+        echo "ssh-agent is already running";
+    fi
 }
