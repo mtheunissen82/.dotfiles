@@ -56,16 +56,6 @@ export HISTCONTROL=ignorespace
 export HISTIGNORE='ls:history:ll'
 export HISTTIMEFORMAT='%d-%m-%Y %T '
 
-# Create a predictable SSH authentication socket location.
-# http://unix.stackexchange.com/questions/75681/why-do-i-have-to-re-set-env-vars-in-tmux-when-i-re-attach#answer-76256
-SOCK="/tmp/ssh-agent-$USER"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-    rm -f /tmp/ssh-agent-$USER
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
-
 # Git
 # Create g<alias> shortcuts for all git aliases and enable git autocompletion
 function_exists() {
@@ -111,11 +101,14 @@ randpasswd() {
     tr -dc a-zA-Z0-9 < /dev/urandom | head -c${1:-32}; echo 1>&2;
 }
 
-# Shortcut fucntion to start ssh-agent and add keys
+# Shortcut function to start ssh-agent
+# with a predictable SSH_AUTH_SOCK location add add keys
 sshgo() {
-    if [ -z "$SSH_AUTH_SOCK" ]; then
-        eval $(ssh-agent) && ssh-add
-    else
+    local SOCK=~/.ssh_auth_sock
+
+    if [ -S $SOCK ]; then
         echo "ssh-agent is already running";
+    else
+        eval $(ssh-agent -a $SOCK) && ssh-add
     fi
 }
