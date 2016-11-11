@@ -221,6 +221,12 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+" Enable hjkl navigation in insert mode
+imap <C-h> <C-o>h
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
+imap <C-l> <C-o>l
+
 " Create shortcut for Esc in insert mode (`^ makes sure the cursor stays at
 " the same position as before the Esc)
 imap jk <Esc>
