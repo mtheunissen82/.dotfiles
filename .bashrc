@@ -1,6 +1,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Load tmux on startup with Base session
+if [[ -f ~/.tmux_on_startup ]] && \
+    command -v tmux > /dev/null && \
+    [[ ! $TERM =~ screen ]] && \
+    [[ -z $TMUX ]]
+then
+    tmux attach -t Base || tmux new -s Base
+fi
+
 # Set terminal title through xterm control sequence
 echo -ne "\e]0;$(hostname)\a"
 
