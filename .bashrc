@@ -121,3 +121,21 @@ sshgo() {
         eval $(ssh-agent -a $SOCK) && ssh-add
     fi
 }
+
+foreachgit() {
+    local cmd=$1
+    local path=${2:-$(pwd)}
+    local cwd=$(pwd)
+
+    local git_paths=$(find $path -name '.git' -print0 | xargs --null -n 1 dirname)
+
+    for git_path in $git_paths
+    do
+        echo "Entering GIT repository: '$git_path'"
+        cd "$git_path"
+        echo "Executing: '$cmd'"
+        eval "$cmd"
+    done
+
+    cd $cwd
+}
