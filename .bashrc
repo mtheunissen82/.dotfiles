@@ -7,6 +7,10 @@ if [[ -f ~/.tmux_on_startup ]] && \
     [[ ! $TERM =~ screen ]] && \
     [[ -z $TMUX ]]
 then
+    # Ensure existence of directory for continuum plugin (tmux.service)
+    mkdir -p ~/.config/systemd/user
+
+    # Reattach to existing tmux session or create new one
     tmux attach -t Base || tmux new -s Base
 fi
 
