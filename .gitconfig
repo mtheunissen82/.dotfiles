@@ -15,7 +15,9 @@
     a = add
     ai = add --interactive
     ap = add --patch
-    p = push
+    pu = push
+    pm = pull --norebase
+    pr = pull --rebase
     cp = cherry-pick
     cl = clone
     co = checkout
