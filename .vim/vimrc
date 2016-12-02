@@ -343,4 +343,9 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 " }}}
 
+" Plugin: Surround {{{
+vmap ' S'
+vmap " S"
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
