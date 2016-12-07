@@ -105,6 +105,8 @@ endfun
 
 autocmd FileType php,javascript,twig,yml,html,xml,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+command ShowUnicode /[^\x00-\x7F]
+
 " }}}
 
 " UI Config {{{
