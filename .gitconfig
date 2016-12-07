@@ -71,6 +71,8 @@
     fs = "!git fetch -av && git status -v"
     ; add, commit and push
     acp = "!f() { git add . && git commit -m \"$1\" && git push; }; f"
+    ; compare two branches for progress (commits ahead/behind of each other)
+    cmpb = "!f() { git rev-list --no-merges --left-right --count "$@"; }; f"
 [color]
     ui = true
 [diff]
