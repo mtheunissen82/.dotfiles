@@ -114,12 +114,17 @@ randpasswd() {
     tr -dc a-zA-Z0-9 < /dev/urandom | head -c${1:-32}; echo 1>&2;
 }
 
+# Test for the presence of the sshgo socket file
+# and export the SSH_AUTH_SOCK environmental if not already set.
+SSHGO_SOCK_FILE=~/.ssh_auth_sock
+if [[ -S $SSHGO_SOCK_FILE && -z "$SSH_AUTH_SOCK" ]]; then
+    export SSH_AUTH_SOCK=$SSHGO_SOCK_FILE
+fi
+
 # Shortcut function to start ssh-agent
 # with a predictable SSH_AUTH_SOCK location add add keys
 sshgo() {
-    local SOCK=~/.ssh_auth_sock
-
-    if [ -S $SOCK ]; then
+    if [ -S $SSHGO_SOCK_FILE ]; then
         echo "ssh-agent is already running";
     else
         eval $(ssh-agent -a $SOCK) && ssh-add
