@@ -255,7 +255,7 @@ inoremap <Leader>O <Esc>O
 
 " Shortcut for inserting a semicolon at the end of the line
 nmap <Leader>; A;<Esc>
-imap <Leader>; <C-o>$;<Esc>
+imap <Leader>; <Esc>A;<Esc>
 
 " Shortcut for editing my vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
