@@ -105,7 +105,7 @@ endfun
 
 autocmd FileType php,javascript,twig,yml,html,xml,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-command ShowUnicode /[^\x00-\x7F]
+command! ShowUnicode /[^\x00-\x7F]
 
 " }}}
 
@@ -251,6 +251,10 @@ nmap <Bs> i<Bs><Esc>
 " Make ,o and ,O in insert mode behave similar o and O in normal mode
 inoremap <Leader>o <Esc>o
 inoremap <Leader>O <Esc>O
+
+" Shortcut for inserting a semicolon at the end of the line
+nmap <Leader>; A;<Esc>
+imap <Leader>; <C-o>$;<Esc>
 
 " Shortcut for editing my vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
