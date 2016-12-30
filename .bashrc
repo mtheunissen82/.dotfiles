@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ -z "$PS1" ]] && return
 
 # Load tmux on startup with Base session
 if [[ -f ~/.tmux_on_startup ]] && \
@@ -18,17 +18,17 @@ fi
 echo -ne "\e]0;$(hostname)\a"
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
+if [[ -f /etc/bashrc ]]; then
     . /etc/bashrc
 fi
 
 # Enable bash completion in interactive shells
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
 # Source fzf.bash for fuzzy search
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Export localization variables
 export LC_CTYPE=en_US.UTF-8
