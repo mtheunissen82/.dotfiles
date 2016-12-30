@@ -148,3 +148,10 @@ foreachgit() {
 
     cd $cwd
 }
+
+# Function to show the given function arguments and visualize word splitting
+showargs() {
+    printf "%d args:" $#
+    printf " <%s>" "$@"
+    echo
+}
