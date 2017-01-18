@@ -210,6 +210,9 @@ set gdefault
 nnoremap / /\v
 vnoremap / /\v
 
+" Enable search for selection, in visual mode with //
+vnoremap // y/\v<C-R>"<CR>
+
 " }}}
 
 " Editing {{{
