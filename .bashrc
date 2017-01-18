@@ -127,7 +127,7 @@ sshgo() {
     if [ -S $SSHGO_SOCK_FILE ]; then
         echo "ssh-agent is already running";
     else
-        eval $(ssh-agent -a $SOCK) && ssh-add
+        eval $(ssh-agent -a $SSHGO_SOCK_FILE) && ssh-add
     fi
 }
 
