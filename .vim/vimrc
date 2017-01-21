@@ -359,4 +359,9 @@ vmap ' S'
 vmap " S"
 " }}}
 
+" Plugin: UltiSnips {{{
+let g:UltiSnipsSnippetsDir="~/.vim/MyUltiSnips"
+let g:UltiSnipsSnippetDirectories=["MyUltiSnips", "UltiSnips"]
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
