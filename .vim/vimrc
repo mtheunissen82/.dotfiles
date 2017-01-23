@@ -367,4 +367,4 @@ let g:UltiSnipsSnippetDirectories=["MyUltiSnips", "UltiSnips"]
 autocmd FileType php UltiSnipsAddFiletypes php
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim:filetype=vim:foldmethod=marker:foldlevel=0
