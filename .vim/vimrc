@@ -362,6 +362,8 @@ vmap " S"
 " Plugin: UltiSnips {{{
 let g:UltiSnipsSnippetsDir="~/.vim/MyUltiSnips"
 let g:UltiSnipsSnippetDirectories=["MyUltiSnips", "UltiSnips"]
+
+autocmd FileType php UltiSnipsAddFiletypes php
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
