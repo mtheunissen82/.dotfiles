@@ -360,8 +360,8 @@ vmap " S"
 " }}}
 
 " Plugin: UltiSnips {{{
-let g:UltiSnipsSnippetsDir="~/.vim/MyUltiSnips"
-let g:UltiSnipsSnippetDirectories=["MyUltiSnips", "UltiSnips"]
+let g:UltiSnipsSnippetsDir=$HOME."/.vim/plugged/MyUltiSnips"
+let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugged/MyUltiSnips", "UltiSnips"]
 
 autocmd FileType php UltiSnipsAddFiletypes php
 " }}}
