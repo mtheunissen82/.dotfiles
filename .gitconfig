@@ -16,6 +16,7 @@
     ai = add --interactive
     ap = add --patch
     pu = push
+    pua = push --all
     pm = pull --rebase=false
     pr = pull --rebase
     cp = cherry-pick
