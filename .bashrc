@@ -59,6 +59,7 @@ alias clipkey='cat ~/.ssh/id_rsa.pub > /dev/clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
 alias vagrantsup='vagrant up && vagrant ssh'
+alias ag='ag --color --pager "less -RF"'
 
 # History
 history -a
