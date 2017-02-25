@@ -1,0 +1,14 @@
+{
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mtheunissen82/composer-diff"
+        }
+    ],
+    "require": {
+        "drush/drush": "8.x-dev",
+        "sminnee/composer-diff": "@dev"
+    }
+}
