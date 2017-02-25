@@ -9,6 +9,6 @@
     ],
     "require": {
         "drush/drush": "8.x-dev",
-        "sminnee/composer-diff": "@dev"
+        "sminnee/composer-diff": "dev-master"
     }
 }
