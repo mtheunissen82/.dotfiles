@@ -150,6 +150,44 @@ foreachgit() {
     cd $cwd
 }
 
+git_compare_branches() {
+    local lhs_branch=${1:-''}
+    local rhs_branch=${2:-''}
+    local dotspec='..'
+
+    # If the function input contains double or triple dot notation, parse branches accordingly.
+    # Double dot notation is used by default if no dotspec is given
+    dots_list="... .."
+    for dots in $dots_list; do
+        if [[ "$@" == *$dots* ]]; then
+            local spec_spaced=$(tr "$dots" "\n" <<< "$@")
+            local spec_arr=($spec_spaced)
+
+            lhs_branch="${spec_arr[0]}"
+            rhs_branch="${spec_arr[1]}"
+            dotspec="$dots"
+
+            break
+        fi
+    done
+
+    local rev_list=$(git rev-list --no-merges --left-right "${lhs_branch}${dotspec}${rhs_branch}")
+    local rev_count=$(git rev-list --no-merges --left-right --count "${lhs_branch}${dotspec}${rhs_branch}")
+    local rev_count_arr=($rev_count)
+
+    if [[ ${rev_count_arr[0]} -gt 0 ]]; then
+        echo "${rev_count_arr[0]} commit(s) in ${lhs_branch} (not present in ${rhs_branch})"
+        echo "$rev_list" | grep '^<' | tr -d '<'
+        echo
+    fi
+
+    if [[ ${rev_count_arr[1]} -gt 0 ]]; then
+        echo "${rev_count_arr[1]} commit(s) in ${rhs_branch} (not present in ${lhs_branch})"
+        echo "$rev_list" | grep '^>' | tr -d '>'
+        echo
+    fi
+}
+
 # Function to show the given function arguments and visualize word splitting
 showargs() {
     printf "%d args:" $#
