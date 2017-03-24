@@ -99,3 +99,5 @@
     autocorrect = 50
 [diff-so-fancy]
     stripLeadingSymbols = false
+[fetch]
+	prune = true
