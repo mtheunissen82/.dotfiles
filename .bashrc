@@ -71,7 +71,7 @@ export HISTIGNORE='ls:history:ll'
 export HISTTIMEFORMAT='%d-%m-%Y %T '
 
 # Less
-export LESS="--ignore-case"
+export LESS="-IRFX"
 
 # Git
 # Create g<alias> shortcuts for all git aliases and enable git autocompletion
