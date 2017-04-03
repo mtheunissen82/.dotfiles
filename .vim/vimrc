@@ -3,6 +3,12 @@
 " Unleash vims power (bye bye Vi)
 set nocompatible
 
+" Includes {{{
+
+source $VIMRUNTIME/ftplugin/man.vim
+
+" }}}
+
 " Plug {{{
 
 runtime plugged/vim-plug/plug.vim
