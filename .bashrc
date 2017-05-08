@@ -197,3 +197,14 @@ showargs() {
     printf " <%s>" "$@"
     echo
 }
+
+cert_fingerprint() {
+    local cmd='openssl x509 -noout -fingerprint'
+    local input_cert=$1
+    local hash_algo=${2:-'sha1'}
+
+    cmd=$cmd" -$hash_algo"
+    cmd=$cmd" -in $input_cert"
+
+    $cmd | sed 's/.*Fingerprint=//'
+}
