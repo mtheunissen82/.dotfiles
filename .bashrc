@@ -208,3 +208,10 @@ cert_fingerprint() {
 
     $cmd | sed 's/.*Fingerprint=//'
 }
+
+cert_url_fetch() {
+    local host=$1
+    local port=${2:-443}
+
+    openssl s_client -servername ${host} -connect ${host}:${port} </dev/null 2> /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+}
