@@ -215,3 +215,31 @@ cert_url_fetch() {
 
     openssl s_client -servername ${host} -connect ${host}:${port} </dev/null 2> /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 }
+
+cd() {
+    local cd_args="$@"
+    local path=''
+
+    # short-circuit special case -
+    if [[ $cd_args = "-" ]]; then
+        command cd -
+        return
+    fi
+
+    if [[ -z $cd_args ]]; then
+        path=~
+    elif [[ $cd_args = /* ]]; then
+        path=$cd_args
+    else
+        path=$(realpath "$(pwd)/$cd_args")
+    fi
+
+    # if path exists add to .cd_history
+    if [[ -d $path ]]; then
+        echo $path >> ~/.cd_history
+    fi
+
+    command cd $path
+}
+
+alias cdh='dir=$(cat ~/.cd_history | fzf --tac --height 40%) && echo "$dir" && cd "$dir"'
