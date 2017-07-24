@@ -216,6 +216,8 @@ cert_url_fetch() {
     openssl s_client -servername ${host} -connect ${host}:${port} </dev/null 2> /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 }
 
+# Overwrite the cd builtin with a custom function which writes all cd navigated
+# paths as absolute paths to ~/.cd_history
 cd() {
     local cd_args="$@"
     local path=''
@@ -242,4 +244,10 @@ cd() {
     command cd $path
 }
 
-alias cdh='dir=$(cat ~/.cd_history | fzf --tac --height 40%) && echo "$dir" && cd "$dir"'
+# Custom fzf history function
+fzf_cd_history() {
+    dir=$(cat ~/.cd_history | fzf --tac --height 40%) && printf 'cd %q' "$dir"
+}
+
+# Overwrite the by fzf provided bind for cd history with our custom function
+bind '"\ec": " \C-e\C-u`fzf_cd_history`\e\C-e\er\C-m"'
