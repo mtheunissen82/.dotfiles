@@ -222,6 +222,9 @@ cd() {
     local cd_args="$@"
     local path=''
 
+    # remove "-- " prefix
+    cd_args=${cd_args#-- }
+
     # short-circuit special case -
     if [[ $cd_args = "-" ]]; then
         command cd -
