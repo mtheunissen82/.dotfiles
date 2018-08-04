@@ -60,6 +60,7 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
 alias vagrantsup='vagrant up && vagrant ssh'
 alias ag='ag --color --pager "less -RF"'
+alias stat='stat -c "%n %A (%a) %U %G %s"'
 
 # History
 history -a
