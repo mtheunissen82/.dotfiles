@@ -269,6 +269,10 @@ inoremap <Leader>O <Esc>O
 nmap <Leader>; A;<Esc>
 imap <Leader>; <Esc>A;<Esc>
 
+" In visual mode when pasting a previous yank
+" dont overwrite the unnamed register
+xnoremap p pgvy
+
 " Shortcut for editing my vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
