@@ -240,6 +240,9 @@ imap <C-j> <C-o>j
 imap <C-k> <C-o>k
 imap <C-l> <C-o>l
 
+" Make horizontal movement with j and l wrap around
+set whichwrap+=<,>,h,l,[,]
+
 " Create shortcut for Esc in insert mode (`^ makes sure the cursor stays at
 " the same position as before the Esc)
 imap jk <Esc>
