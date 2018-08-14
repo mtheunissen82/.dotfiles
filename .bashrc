@@ -62,6 +62,14 @@ alias vagrantsup='vagrant up && vagrant ssh'
 alias ag='ag --color --pager "less -RF"'
 alias stat='stat -c "%n %A (%a) %U %G %s"'
 
+# Docker
+alias dex='docker exec'
+alias dexit='docker exec --interactive --tty'
+
+# Networking
+alias ils='ip link show'
+alias ias='ip addr show'
+
 # History
 history -a
 shopt -s histappend
