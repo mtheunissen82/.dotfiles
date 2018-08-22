@@ -24,14 +24,12 @@ if [[ -d ~/.tmux ]]; then
     mv ~/.tmux ~/.tmux.old
 fi
 
-if [[ -d ~/.config ]]; then
-    mv ~/.config ~/.config.old
-fi
-
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.vim ~/.vim
 ln -s ~/.dotfiles/.vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.tmux ~/.tmux
-ln -s ~/.dotfiles/.config ~/.config
+
+mkdir -p ~/.config/nvim
+ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
