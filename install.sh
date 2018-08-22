@@ -8,7 +8,7 @@ if [[ -f ~/.gitconfig ]]; then
     mv ~/.gitconfig ~/.gitconfig.old
 fi
 
-if [[ -f ~/.vim ]]; then
+if [[ -d ~/.vim ]]; then
     mv ~/.vim ~/.vim.old
 fi
 
@@ -20,8 +20,12 @@ if [[ -f ~/.tmux.conf ]]; then
     mv ~/.tmux.conf ~/.tmux.conf.old
 fi
 
-if [[ -f ~/.tmux ]]; then
+if [[ -d ~/.tmux ]]; then
     mv ~/.tmux ~/.tmux.old
+fi
+
+if [[ -d ~/.config ]]; then
+    mv ~/.config ~/.config.old
 fi
 
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
@@ -30,3 +34,4 @@ ln -s ~/.dotfiles/.vim ~/.vim
 ln -s ~/.dotfiles/.vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.tmux ~/.tmux
+ln -s ~/.dotfiles/.config ~/.config
