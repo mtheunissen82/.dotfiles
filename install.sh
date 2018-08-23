@@ -33,3 +33,6 @@ ln -s ~/.dotfiles/.tmux ~/.tmux
 
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+
+# Enable git completion
+sudo curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -L -o /etc/bash_completion.d/git-completion.bash

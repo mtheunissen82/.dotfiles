@@ -89,7 +89,7 @@ function_exists() {
     return $?
 }
 
-for al in `__git_aliases`; do
+for al in $(__git_get_config_variables "alias"); do
     alias g$al="git $al"
 
     complete_func=_git_$(__git_aliased_command $al)
@@ -263,3 +263,7 @@ fzf_cd_history() {
 
 # Overwrite the by fzf provided bind for cd history with our custom function
 bind '"\ec": " \C-e\C-u`fzf_cd_history`\e\C-e\er\C-m"'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
