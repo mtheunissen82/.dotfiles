@@ -99,8 +99,9 @@
     // Comma-separated list of motion keys that should wrap to next/previous line.
     "vim.whichwrap": "h,l,<,>,[,]",
     "workbench.colorCustomizations": {
-        "statusBar.background": "#5f0000",
-        "statusBar.noFolderBackground": "#5f0000",
-        "statusBar.debuggingBackground": "#5f0000"
-    }
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+    "window.zoomLevel": 1
 }
