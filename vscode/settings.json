@@ -1,5 +1,5 @@
 {
-	// Controls auto save of dirty files. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).
+    // Controls auto save of dirty files. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).
     //  - off: A dirty file is never automatically saved.
     //  - afterDelay: A dirty file is automatically saved after the configured `files.autoSaveDelay`.
     //  - onFocusChange: A dirty file is automatically saved when the editor loses focus.
@@ -11,80 +11,96 @@
     //  - \n: LF
     //  - \r\n: CRLF
     "files.eol": "\r\n",
+    // Controls the dispatching logic for key presses to use either `code` (recommended) or `keyCode`.
+    "keyboard.dispatch": "keyCode",
     // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.normalModeKeyBindings": [],
-
     // Non-recursive remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["j"],
-            "after": ["g", "j"]
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
         },
         {
-            "before": ["k"],
-            "after": ["g", "k"]
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
         },
         {
-            "before": [":"],
+            "before": [
+                ":"
+            ],
             "commands": [
                 "vim.showQuickpickCmdLine"
             ]
         }
     ],
-
     // Remapped keys in insert mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.insertModeKeyBindings": [],
-
     // Non-recursive keybinding overrides to use for insert mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.insertModeKeyBindingsNonRecursive": [],
-
     // Remapped keys in visual mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.visualModeKeyBindings": [],
-
     // Non-recursive keybinding overrides to use for visual mode. Allows mapping to vim commands or vscode actions. See README for more.
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["p"],
-            "after": ["p", "g", "v", "y"]
+            "before": [
+                "p"
+            ],
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ]
         },
         {
-            "before": [">"],
+            "before": [
+                ">"
+            ],
             "commands": [
                 "editor.action.indentLines"
             ]
         },
         {
-            "before": ["<"],
+            "before": [
+                "<"
+            ],
             "commands": [
                 "editor.action.outdentLines"
             ]
         }
-	],
-
+    ],
     // Show all matches of the most recent search pattern
     "vim.hlsearch": true,
-
     // What key should <leader> map to in remappings?
     "vim.leader": ",",
-
     // Allow VSCodeVim to change status bar color based on mode
     "vim.statusBarColorControl": true,
-
     // Automatically apply the global flag, /g, to substitute commands. When set to true, use /g to mean only first match should be replaced.
     "vim.substituteGlobalFlag": true,
-
     // Number of lines to scroll with CTRL-U and CTRL-D commands.
     "vim.scroll": 15,
-
     // Enable the Surround plugin for Vim.
     "vim.surround": true,
-
     // Use system clipboard for unnamed register.
     "vim.useSystemClipboard": true,
-
-	// In visual mode, start a search with * or # using the current selection
-	"vim.visualstar": true,
-
-	// Comma-separated list of motion keys that should wrap to next/previous line.
-	"vim.whichwrap": "h,l,<,>,[,]"
+    // In visual mode, start a search with * or # using the current selection
+    "vim.visualstar": true,
+    // Comma-separated list of motion keys that should wrap to next/previous line.
+    "vim.whichwrap": "h,l,<,>,[,]",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f0000",
+        "statusBar.noFolderBackground": "#5f0000",
+        "statusBar.debuggingBackground": "#5f0000"
+    }
 }
