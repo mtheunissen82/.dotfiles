@@ -1,4 +1,8 @@
 {
+    // When enabled, insert a final new line at the end of the file when saving it.
+    "files.insertFinalNewline": true,
+    // When enabled, will trim all new lines after the final new line at the end of the file when saving it.
+    "files.trimFinalNewlines": true,
     // Controls auto save of dirty files. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).
     //  - off: A dirty file is never automatically saved.
     //  - afterDelay: A dirty file is automatically saved after the configured `files.autoSaveDelay`.
@@ -10,7 +14,7 @@
     // The default end of line character.
     //  - \n: LF
     //  - \r\n: CRLF
-    "files.eol": "\r\n",
+    "files.eol": "\n",
     // Controls the dispatching logic for key presses to use either `code` (recommended) or `keyCode`.
     "keyboard.dispatch": "keyCode",
     // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
