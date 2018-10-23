@@ -229,7 +229,7 @@ cert_url_fetch() {
 # paths as absolute paths to ~/.cd_history
 cd() {
     local cd_args="$@"
-    local path=''
+    local path=""
 
     # remove "-- " prefix
     cd_args=${cd_args#-- }
@@ -253,7 +253,7 @@ cd() {
         echo $path >> ~/.cd_history
     fi
 
-    command cd $path
+    command cd "$path"
 }
 
 # Custom fzf history function
