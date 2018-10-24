@@ -261,8 +261,11 @@ fzf_cd_history() {
     dir=$(cat ~/.cd_history | fzf --tac --height 40%) && printf 'cd %q' "$dir"
 }
 
-# Overwrite the by fzf provided bind for cd history with our custom function
+# Custom readline bindings
+# fzf shortcut to custom "cd" functionality
 bind '"\ec": " \C-e\C-u`fzf_cd_history`\e\C-e\er\C-m"'
+# easy "less" piping shortcut
+bind '"\C-l": " \C-e | less\e\C-e\er\C-m"'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
