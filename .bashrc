@@ -65,6 +65,7 @@ alias stat='stat -c "%n %A (%a) %U %G %s"'
 # Docker
 alias dex='docker exec'
 alias dexit='docker exec --interactive --tty'
+alias dc='docker-compose'
 
 # Networking
 alias ils='ip link show'
