@@ -106,15 +106,21 @@ mkd() {
 
 # Customize prompt PS1
 my_prompt() {
+    local yellow1="\[\e[38;5;226m\]"
+    local deepskyblue1="\[\e[38;5;39m\]"
+    local orangered1="\[\e[38;5;202m\]"
+    local grey54="\[\e[38;5;245m\]"
+    local reset="\[\e[0m\]"
+
     local branch=$(git branch 2>/dev/null | grep '^*' | sed s/..//)
     local branch_addition=""
 
     if [ -n "$branch" ]
     then
-        branch_addition=" [\[\e[38;5;202m\]${branch}\[\e[0m\]]"
+        branch_addition=" ${grey54}⦗${orangered1}${branch}${grey54}⦘"
     fi
 
-    export PS1="\u@\h:\[\e[38;5;57m\]\w\[\e[0m\]${branch_addition} \\$ "
+    export PS1="${deepskyblue1}\w${branch_addition}${reset}\n ${yellow1}⮕ ${reset} "
 }
 
 PROMPT_COMMAND=my_prompt
