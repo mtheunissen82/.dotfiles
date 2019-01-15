@@ -120,7 +120,7 @@ my_prompt() {
         branch_addition=" ${grey54}⦗${orangered1}${branch}${grey54}⦘"
     fi
 
-    export PS1="${deepskyblue1}\w${branch_addition}${reset}\n ${yellow1}⮕ ${reset} "
+    export PS1="\n${deepskyblue1}\w${branch_addition}${reset}\n ${yellow1}⮕ ${reset} "
 }
 
 PROMPT_COMMAND=my_prompt
