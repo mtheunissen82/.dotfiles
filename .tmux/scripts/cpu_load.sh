@@ -1,7 +1,9 @@
 #!/bin/bash
-# Author: Marc Theunissen <mtheuniss82@gmail.com>
-# Inspired by script from Paul Colby: https://github.com/pcolby/scripts/blob/master/cpu.sh
-# Calculate total CPU percentage per core.
+#
+# Copyright © 2019 Marc Theunissen <mtheunissen82[at]gmail[dot]com>
+# This work is free. You can redistribute it and/or modify it under the
+# terms of the Do What The Fuck You Want To Public License, Version 2,
+# as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 
 PREV_TOTAL=0
 PREV_IDLE=0
@@ -14,7 +16,7 @@ for CORE_NR in $(seq 0 7); do
     CORE_MAP["cpu${CORE_NR}_prev_idle"]=0
 done
 
-while true; do
+for ITERATION in $(seq 2); do
     CPU_TOTAL_USAGE=0
 
     CORES=$(cat /proc/stat | grep "^cpu[0-7]")
@@ -46,7 +48,9 @@ while true; do
         let "CPU_TOTAL_USAGE=$CPU_TOTAL_USAGE+$CORE_DIFF_USAGE"
     done <<< "$CORES"
 
-    echo -en "\r$CPU_TOTAL_USAGE%  \b\b"
+    if [[ $ITERATION -eq 2 ]]; then
+        echo -en "$(printf "%3s%%" $CPU_TOTAL_USAGE)\r"
+    fi
 
     sleep 1
 done
