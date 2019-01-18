@@ -50,6 +50,7 @@ for ITERATION in $(seq 2); do
 
     if [[ $ITERATION -eq 2 ]]; then
         echo -en "$(printf "%3s%%" $CPU_TOTAL_USAGE)\r"
+        exit
     fi
 
     sleep 1
