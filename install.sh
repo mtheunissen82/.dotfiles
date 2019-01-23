@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install apt packages
-sudo apt-get install -y vim nvim curl wget git silversearcher-ag tmux nfs-common samba-common-bin smbclient cifs-utils
+sudo apt-get install -y vim nvim curl wget git silversearcher-ag tmux nfs-common samba-common-bin smbclient cifs-utils xclip
 
 # Install nvm (node version manager)
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
