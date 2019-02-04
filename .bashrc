@@ -55,7 +55,7 @@ alias ls='ls --color=auto'
 alias mkdir='mkdir -p'
 alias cl='clear'
 alias v='vim'
-alias clipkey='cat ~/.ssh/id_rsa.pub | xclip'
+alias clipkey='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
 alias vagrantsup='vagrant up && vagrant ssh'
@@ -72,6 +72,7 @@ alias dc='docker-compose'
 alias ils='ip link show'
 alias ias='ip addr show'
 alias iptables='sudo iptables --list --line-numbers --verbose'
+alias route='route -n'
 
 # History
 history -a
