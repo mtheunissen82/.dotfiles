@@ -25,6 +25,11 @@ if [[ -f ~/.bashrc && ! -L ~/.bashrc ]]; then
     ln -s ~/.dotfiles/.bashrc ~/.bashrc
 fi
 
+if [[ -f ~/.bash_aliases && ! -L ~/.bash_aliases ]]; then
+    mv ~/.bash_aliases ~/.bash_aliases.old
+    ln -s ~/.dotfiles/.bash_aliases ~/.bash_aliases
+fi
+
 if [[ -f ~/.gitconfig && ! -L ~/.gitconfig ]]; then
     mv ~/.gitconfig ~/.gitconfig.old
     ln -s ~/.dotfiles/.gitconfig ~/.gitconfig

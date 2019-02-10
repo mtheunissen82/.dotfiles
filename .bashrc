@@ -19,16 +19,23 @@ echo -ne "\e]0;$(hostname)\a"
 
 # Source global definitions
 if [[ -f /etc/bashrc ]]; then
-    . /etc/bashrc
+    source /etc/bashrc
 fi
 
-# Enable bash completion in interactive shells
+# Source aliases
+if [[ -f ~/bash_aliases ]]; then
+    source ~/.bash_aliases
+fi
+
+# Source bash completion
 if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 
 # Source fzf.bash for fuzzy search
-[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+if [[ -f ~/.fzf.bash ]]; then
+    source ~/.fzf.bash
+fi
 
 # Export localization variables
 export LC_CTYPE=en_US.UTF-8
@@ -37,42 +44,6 @@ export LC_ALL=en_US.UTF-8
 # Shell options
 shopt -s globstar
 shopt -s checkwinsize
-
-# Navigation
-shopt -s autocd
-alias cd..='cd ..'
-alias ..='cd ..'
-alias .2='cd ../..'
-alias .3='cd ../../../'
-alias .4='cd ../../../..'
-alias -- -="cd -"
-
-# Various
-alias h='history'
-alias j='jobs -l'
-alias ll='ls -alh --color=auto'
-alias ls='ls --color=auto'
-alias mkdir='mkdir -p'
-alias cl='clear'
-alias v='vim'
-alias clipkey='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias less='less -r'
-alias vagrantsup='vagrant up && vagrant ssh'
-alias ag='ag --color --pager "less -RF"'
-alias stat='stat -c "%n %A (%a) %U %G %s"'
-
-# Docker
-alias dex='docker exec'
-alias dexit='docker exec --interactive --tty'
-alias di='docker inspect'
-alias dc='docker-compose'
-
-# Networking
-alias ils='ip link show'
-alias ias='ip addr show'
-alias iptables='sudo iptables --list --line-numbers --verbose'
-alias route='route -n'
 
 # History
 history -a
@@ -129,7 +100,7 @@ PROMPT_COMMAND=my_prompt
 # List bash aliases
 la() {
     # Currently all my aliases are in .bashrc
-    grep "^alias" ~/.bashrc  | cut -c 7- | sort
+    grep "^alias" ~/.bash_aliases  | cut -c 7- | sort
 }
 
 # Generate a random password
