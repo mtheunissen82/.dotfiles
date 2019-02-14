@@ -23,7 +23,7 @@ if [[ -f /etc/bashrc ]]; then
 fi
 
 # Source aliases
-if [[ -f ~/bash_aliases ]]; then
+if [[ -f ~/.bash_aliases ]]; then
     source ~/.bash_aliases
 fi
 
