@@ -37,6 +37,8 @@ if [[ -f ~/.fzf.bash ]]; then
     source ~/.fzf.bash
 fi
 
+source ~/.dotfiles/bash_functions.d/util
+
 # Export localization variables
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -59,11 +61,6 @@ export LESS="-IRFX"
 
 # Git
 # Create g<alias> shortcuts for all git aliases and enable git autocompletion
-function_exists() {
-    declare -f -F $1 > /dev/null
-    return $?
-}
-
 for al in $(__git_get_config_variables "alias"); do
     alias g$al="git $al"
 
