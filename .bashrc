@@ -81,6 +81,12 @@ my_prompt() {
     local grey54="\[\e[38;5;245m\]"
     local reset="\[\e[0m\]"
 
+    local bookmark_addition=""
+    bookmark_check_cwd
+    if [[ $? -eq 0 ]]; then
+        bookmark_addition=" 📖"
+    fi
+
     local branch=$(git branch 2>/dev/null | grep '^*' | sed s/..//)
     local branch_addition=""
 
@@ -89,7 +95,7 @@ my_prompt() {
         branch_addition=" ${grey54}⦗${orangered1}${branch}${grey54}⦘"
     fi
 
-    export PS1="\n${deepskyblue1}\w${branch_addition}${reset}\n ${yellow1}⮕ ${reset} "
+    export PS1="\n${deepskyblue1}\w${bookmark_addition}${branch_addition}${reset}\n ${yellow1}⮕ ${reset} "
 }
 
 PROMPT_COMMAND=my_prompt

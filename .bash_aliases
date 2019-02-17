@@ -7,6 +7,11 @@ alias .3='cd ../../../'
 alias .4='cd ../../../..'
 alias -- -="cd -"
 
+# Bookmark
+alias bm='bookmark_cd_fzf'
+alias bms='bookmark_set_cwd'
+alias bmu='bookmark_unset_cwd'
+
 # Various
 alias h='history'
 alias j='jobs -l'

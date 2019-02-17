@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Bookmark file location
+BOOKMARK_FILE=~/.bookmarks
+
+# List bookmarks
+bookmark_list() {
+    cat "$BOOKMARK_FILE"
+}
+
+# Set a bookmark
+bookmark_set() {
+    local bookmarks
+
+    echo "$1" >> "$BOOKMARK_FILE"
+
+    bookmarks=$(cat "$BOOKMARK_FILE")
+    uniq <<<"$bookmarks" | sort > "$BOOKMARK_FILE"
+}
+
+# Set the current working directory
+bookmark_set_cwd() {
+    bookmark_set "$PWD"
+}
+
+# Unset a bookmark
+bookmark_unset() {
+    local bookmarks
+
+    bookmarks=$(bookmark_list)
+    echo "$bookmarks" | grep -v "^${1}$" > "$BOOKMARK_FILE"
+}
+
+# Unset the current working directory
+bookmark_unset_cwd() {
+    bookmark_unset "$PWD"
+}
+
+# Navigate (cd) to a bookmark with fzf
+bookmark_cd_fzf() {
+    local bookmarks bookmark
+
+    bookmarks=$(cat "$BOOKMARK_FILE")
+    bookmark=$(echo -n "$bookmarks" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<<"$bookmarks"))) )
+
+    cd "$bookmark"
+}
+
+# Check if a given path is a bookmark
+bookmark_check() {
+    bookmark_list | grep "^${1}$" > /dev/null 2>&1
+}
+
+# Check if the current working directory is a bookmark
+bookmark_check_cwd() {
+    bookmark_check "$PWD"
+}
+
