@@ -22,7 +22,7 @@
     pr = pull --rebase
     cp = cherry-pick
     cl = clone
-        co = checkout
+    co = "!/bin/bash -c 'source ~/.dotfiles/bash_functions.d/git; git_checkout_fzf;'"
     br = branch
     fa = fetch --all
 

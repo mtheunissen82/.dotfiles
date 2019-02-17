@@ -1,0 +1,37 @@
+#!/bin/bash
+
+git_branch_checkout_fzf() {
+    local branches branch
+
+    branches=$(git branch -avv | grep -v HEAD)
+    branch=$(echo "$branches" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$branches") )) )
+
+    if [[ $branch ]]; then
+        git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
+    fi
+}
+
+git_tag_checkout_fzf() {
+    local branches branch
+
+    branches=$(git branch -avv | grep -v HEAD)
+    branch=$(echo "$branches" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$branches") )) )
+
+    if [[ $branch ]]; then
+        git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
+    fi
+}
+
+git_checkout_fzf() {
+    local branches tags tags_and_branches_merged checkout_target
+
+    branches=$(git branch -avv | grep -v HEAD)
+    tags=$(git tag)
+    tags_and_branches_merged=$(echo "$branches"; echo "$tags")
+
+    checkout_target=$(echo "$tags_and_branches_merged" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$tags_and_branches_merged") )) )
+
+    if [[ $checkout_target ]]; then
+        git checkout "$(echo "$checkout_target" | awk '{print $1}' | sed "s/.* //")"
+    fi
+}
