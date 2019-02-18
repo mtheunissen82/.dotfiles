@@ -12,6 +12,7 @@ nvm install --lts
 # Install global npm modules
 npm install -g diff-so-fancy
 npm install -g @angular/cli
+npm install -g npx
 
 # Install vim plugins
 vim +'PlugInstall --sync' +qa
@@ -55,6 +56,10 @@ if [[ -d ~/.tmux && ! -L ~/.tmux ]]; then
     ln -s ~/.dotfiles/.tmux ~/.tmux
 fi
 
+if [[ -d ~/.git_templates && ! -L ~/.git_temlates ]]; then
+    mv ~/.git_templates ~/.git_templates.old
+    ln -s ~/.dotfiles/.git_templates ~/.git_templates
+fi
 
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim

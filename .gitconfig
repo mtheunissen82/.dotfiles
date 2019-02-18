@@ -8,6 +8,8 @@
     editor = vim
     fileMode = false
     autocrlf = input
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
 [alias]
     ; General shortcuts
     s = status --short

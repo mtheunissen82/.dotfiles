@@ -5,3 +5,10 @@ function_exists() {
     return $?
 }
 
+string_to_lower() {
+    echo -n "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+replace_whitespace_with_dashes() {
+    echo -n "$1" | sed -E 's/\s+/-/g'
+}

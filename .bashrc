@@ -37,7 +37,8 @@ if [[ -f ~/.fzf.bash ]]; then
     source ~/.fzf.bash
 fi
 
-source ~/.dotfiles/bash_functions.d/util
+# Source all functions from bash_functions.d
+for f in ~/.dotfiles/bash_functions.d/*; do source $f; done
 
 # Export localization variables
 export LC_CTYPE=en_US.UTF-8

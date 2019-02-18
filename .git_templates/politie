@@ -1,0 +1,22 @@
+#!/bin/bash
+
+branch_template() {
+    local issue_ticket_number description
+
+    issue_ticket_number="$1"
+
+    description=$(string_to_lower "$2")
+    description=$(replace_whitespace_with_dashes "$description")
+
+    printf "feature/POLITIENL-%s-%s" "$issue_ticket_number" "$description"
+}
+
+commit_template() {
+    local issue_ticket_number description current_branch
+
+    description="$1"
+    current_branch=$(git_get_current_branch)
+    issue_ticket_number=$(echo -n $current_branch | sed -r 's/.*\-([0-9]+)\-.*/\1/')
+
+    printf "[POLITIENL-%s] %s" "$issue_ticket_number" "$description"
+}
