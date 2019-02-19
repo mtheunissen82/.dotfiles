@@ -24,9 +24,11 @@
     pr = pull --rebase
     cp = cherry-pick
     cl = clone
-    co = "!/bin/bash -c 'source ~/.dotfiles/bash_functions.d/git; git_checkout_fzf;'"
+    co = "!/bin/bash -c 'source ~/.dotfiles/bash_functions.d/git; git_checkout_fzf;' --"
     br = branch
     fa = fetch --all
+    ct = "!/bin/bash -i -c 'git_create_commit_with_template \"$@\";' --"
+    bt = "!/bin/bash -i -c 'git_create_branch_with_template \"$@\";' --"
 
     ; Diff and merge
     d = "!f() { git diff --patch-with-stat --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"
