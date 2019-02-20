@@ -55,6 +55,7 @@
     rh = reset --hard
     rh1 = reset HEAD^ --hard
     rh2 = reset HEAD^^ --hard
+    rf = "!/bin/bash -i -c 'git_reset_file_fzf \"$@\";' --"
 
     ; Stashing
     sp = stash --patch

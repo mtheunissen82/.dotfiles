@@ -87,3 +87,11 @@ git_create_commit_with_template() {
 git_get_current_branch() {
     git branch --list | grep '^*' | awk '{ print $2 }'
 }
+
+git_reset_file_fzf() {
+    local resetable_files reset_selection
+    resetable_files=$(git status --porcelain | grep -E '^(A|\s?M)' | awk '{print $2}')
+    reset_selection=$(echo -n "$resetable_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$resetable_files") )))
+
+    git reset HEAD $reset_selection
+}
