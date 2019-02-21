@@ -18,17 +18,20 @@
     a = add
     ai = add --interactive
     ap = add --patch
+    af = "!/bin/bash -i -c 'git_add_file_fzf \"$@\"' --"
     pu = push
     pua = push --all
     pm = pull --rebase=false
     pr = pull --rebase
     cp = cherry-pick
     cl = clone
-    co = "!/bin/bash -c 'source ~/.dotfiles/bash_functions.d/git; git_checkout_fzf;' --"
+    co = "!/bin/bash -i -c 'git_checkout_fzf' --"
+    cf = "!/bin/bash -i -c 'git_checkout_file_fzf \"$@\"' --"
     br = branch
     fa = fetch --all
-    ct = "!/bin/bash -i -c 'git_create_commit_with_template \"$@\";' --"
-    bt = "!/bin/bash -i -c 'git_create_branch_with_template \"$@\";' --"
+    ct = "!/bin/bash -i -c 'git_create_commit_with_template \"$@\"' --"
+    bt = "!/bin/bash -i -c 'git_create_branch_with_template \"$@\"' --"
+    bd = "!/bin/bash -i -c 'git_branch_delete_fzf \"$@\"' --"
 
     ; Diff and merge
     d = "!f() { git diff --patch-with-stat --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"

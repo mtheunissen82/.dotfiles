@@ -58,7 +58,9 @@ git_create_branch_with_template() {
     shift
 
     branch_to_create=$(branch_template "$@")
-    git checkout -b "$branch_to_create" --track
+
+    git checkout --no-track -b "$branch_to_create"
+    git branch --set-upstream-to "origin/${branch_to_create}"
 }
 
 git_create_commit_with_template() {
@@ -89,9 +91,39 @@ git_get_current_branch() {
 }
 
 git_reset_file_fzf() {
-    local resetable_files reset_selection
-    resetable_files=$(git status --porcelain | grep -E '^(A|\s?M)' | awk '{print $2}')
-    reset_selection=$(echo -n "$resetable_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$resetable_files") )))
+    local reset_files reset_selection
 
-    git reset HEAD $reset_selection
+    reset_files=$(git diff --cached --name-only)
+    reset_selection=$(echo -n "$reset_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$reset_files") )))
+
+    git reset HEAD -- $reset_selection
+}
+
+git_checkout_file_fzf() {
+    local checkout_files checkout_selection
+
+    checkout_files=$(git status --porcelain | grep -E '^(A|\s?M)' | awk '{print $2}')
+    checkout_selection=$(echo -n "$checkout_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$checkout_files") )))
+
+    git checkout -- $checkout_selection
+}
+
+git_add_file_fzf() {
+    local add_files add_selection
+
+    add_files=$(git diff --name-only)
+    add_selection=$(echo -n "$add_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$add_files") )))
+
+    git add -- $add_selection
+}
+
+git_branch_delete_fzf() {
+    local branches branch_selection
+
+    branches=$(git branch --list | grep -v '^*')
+    branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$branches") )))
+
+    if [[ $branch_selection ]]; then
+        git branch -d "$branch_selection"
+    fi
 }
