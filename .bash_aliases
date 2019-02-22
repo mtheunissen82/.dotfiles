@@ -8,9 +8,13 @@ alias .4='cd ../../../..'
 alias -- -="cd -"
 
 # Bookmark
-alias bm='bookmark_cd_fzf'
-alias bms='bookmark_set_cwd'
-alias bmu='bookmark_unset_cwd'
+alias bm='bookmark_cd_fzf' # list bookmarks
+alias bms='bookmark_set_cwd' # bookmark set
+alias bmu='bookmark_unset_cwd' # bookmark unset
+
+# Bash
+alias lrc='source ~/.bashrc' # load rc
+alias erc='vim ~/.bashrc; source ~/.bashrc' # edit rc
 
 # Various
 alias h='history'
