@@ -112,9 +112,11 @@ git_add_file_fzf() {
     local add_files add_selection
 
     add_files=$(git diff --name-only)
-    add_selection=$(echo -n "$add_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$add_files") )))
+    add_selection=$(echo -n "$add_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | diff-so-fancy --colors')
 
-    git add -- $add_selection
+    if [[ $add_selection ]]; then
+        git add -- $add_selection
+    fi
 }
 
 git_branch_delete_fzf() {
