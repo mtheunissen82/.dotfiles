@@ -129,3 +129,49 @@ git_branch_delete_fzf() {
         git branch -d "$branch_selection"
     fi
 }
+
+git_log_file_fzf() {
+    local first_arg="$1"
+    local file_selection ls_files_selection
+    local commit_selection
+    local git_root_path=$(git rev-parse --show-toplevel)
+
+    # If no argument is passed present all files in the repository
+    if [[ -z "$first_arg" ]]; then
+        ls_files_selection=$(git ls-files --full-name -- "$git_root_path" | fzf-tmux)
+        file_selection="${git_root_path}/${ls_files_selection}"
+    # If a "." argument is passed present all files below the current directory
+    elif [[ "$first_arg" = "." ]]; then
+        ls_files_selection=$(git ls-files --full-name -- "$(git_get_invocation_dir)" | fzf-tmux)
+        file_selection="${git_root_path}/${ls_files_selection}"
+    # Argument must be a file
+    else
+        file_selection="$(git_get_invocation_dir)/$first_arg"
+    fi
+
+    if [[ ! -f $file_selection ]]; then
+        echo "Selected file not found: $file_selection" 2>&1
+        return 1
+    fi
+
+    commit_selection=$(git log --no-decorate --follow --format='format:%h - %Cgreen%s%Creset - %an' "$file_selection" | fzf-tmux -d 100% --ansi --preview="git show --color --pretty=fuller {1} -- \"$file_selection\" | diff-so-fancy" | awk '{print $1}')
+
+    if [[ $commit_selection ]]; then
+        git show "$commit_selection" -- "$file_selection"
+    fi
+}
+
+git_get_invocation_dir() {
+    local git_root_path=$(git rev-parse --show-toplevel)
+
+    if [[ $? -ne 0 ]]; then
+        echo "This is not a git directory" 2>&1
+        return 1
+    fi
+
+    if [[ -n "$GIT_PREFIX" ]]; then
+        echo "$git_root_path/$GIT_PREFIX"
+    else
+        echo "$PWD"
+    fi
+}
