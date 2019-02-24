@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 " Plugins {{{
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'evidens/vim-twig'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/incsearch.vim'
