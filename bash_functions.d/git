@@ -110,8 +110,9 @@ git_checkout_file_fzf() {
 
 git_add_file_fzf() {
     local add_files add_selection
+    local git_root_path=$(git rev-parse --show-toplevel)
 
-    add_files=$(git diff --name-only; git status --porcelain | grep '^??' | awk '{print $2}')
+    add_files=$(git ls-files -om --exclude-standard --full-name -- "$git_root_path")
     add_selection=$(echo -n "$add_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | diff-so-fancy --colors')
 
     if [[ $add_selection ]]; then
