@@ -96,7 +96,9 @@ git_reset_file_fzf() {
     reset_files=$(git diff --cached --name-only)
     reset_selection=$(echo -n "$reset_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$reset_files") )))
 
-    git reset HEAD -- $reset_selection
+    if [[ $reset_selection ]]; then
+        git reset HEAD -- $reset_selection
+    fi
 }
 
 git_checkout_file_fzf() {
@@ -129,7 +131,7 @@ git_branch_delete_fzf() {
     branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$branches") )))
 
     if [[ $branch_selection ]]; then
-        git branch -d "$branch_selection"
+        git branch -d $branch_selection
     fi
 }
 
