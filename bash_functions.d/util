@@ -12,3 +12,15 @@ string_to_lower() {
 replace_whitespace_with_dashes() {
     echo -n "$1" | sed -E 's/\s+/-/g'
 }
+
+trim_leading_whitespace() {
+    sed -e 's/^[[:space:]]*//' <<<"$@"
+}
+
+trim_trailing_whitespace() {
+    sed -e 's/[[:space:]]*$//' <<<"$@"
+}
+
+trim_whitespace() {
+    trim_trailing_whitespace "$(trim_leading_whitespace "$@")"
+}
