@@ -175,6 +175,9 @@ set hidden
 " Save on buffer switch
 set autowrite
 
+" Make yanked stuff available everywhere
+set clipboard=unnamedplus
+
 " Map F5 to list and select buffers
 map <F5> :buffers<CR>:buffer<Space>
 
