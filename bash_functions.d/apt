@@ -1,0 +1,17 @@
+#!/bin/bash
+
+apt_install_fzf() {
+    local packages=$(dpkg --list '*' | grep '^.n' | awk '{print $2}' | fzf-tmux --multi -d 100% --preview 'apt-cache show {}')
+
+    if [[ -n $packages ]]; then
+        sudo apt-get install $packages
+    fi
+}
+
+apt_remove_fzf() {
+    local packages=$(dpkg --list '*' | grep '^.i' | awk '{print $2}' | fzf-tmux --multi -d 100% --preview 'apt-cache show {}')
+
+    if [[ -n $packages ]]; then
+        sudo apt-get remove $packages
+    fi
+}

@@ -41,3 +41,7 @@ alias ils='ip link show'
 alias ias='ip addr show'
 alias iptables='sudo iptables --list --line-numbers --verbose'
 alias route='route -n'
+
+# Apt
+alias apti='apt_install_fzf'
+alias aptr='apt_remove_fzf'
