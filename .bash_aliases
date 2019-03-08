@@ -23,7 +23,6 @@ alias ll='ls -alh --color=auto'
 alias ls='ls --color=auto'
 alias mkdir='mkdir -p'
 alias cl='clear'
-alias v='vim'
 alias clipkey='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
