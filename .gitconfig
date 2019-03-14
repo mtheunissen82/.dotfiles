@@ -87,6 +87,7 @@
     ui = true
 [diff]
     tool = vimdiff
+    algorithm = minimal
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
