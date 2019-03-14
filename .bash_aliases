@@ -26,6 +26,7 @@ alias cl='clear'
 alias clipkey='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias less='less -r'
+alias l='less'
 alias vagrantsup='vagrant up && vagrant ssh'
 alias ag='ag --color --pager "less -RF"'
 alias stat='stat -c "%n %A (%a) %U %G %s"'
