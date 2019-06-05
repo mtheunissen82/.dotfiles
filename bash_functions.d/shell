@@ -3,3 +3,16 @@
 cdf() {
     cd $(dirname "$@")
 }
+
+cdfi() {
+    local search="$@"
+    local file=$(find . -iname "$search" | fzf-tmux --no-multi -d 50%)
+
+    if [[ -n $file ]]; then
+        if [[ -d $file ]]; then
+            cd "$file"
+        else
+            cdf "$file"
+        fi
+    fi
+}
