@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# abbrev: cd file
 cdf() {
     cd $(dirname "$@")
 }
 
+# abbrev: cd find
 cdfi() {
     local search="$@"
     local file=$(find . -iname "$search" | fzf-tmux --no-multi -d 50%)
@@ -15,4 +17,10 @@ cdfi() {
             cdf "$file"
         fi
     fi
+}
+
+# abbrev: file which
+fw() {
+    local term="$@"
+    file $(which "$term")
 }
