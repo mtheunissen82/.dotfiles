@@ -42,6 +42,7 @@ alias ils='ip link show'
 alias ias='ip addr show'
 alias iptables='sudo iptables --list --line-numbers --verbose --numeric'
 alias route='route -n'
+alias hosts='sudo vim /etc/hosts'
 
 # Apt
 alias apti='apt_install_fzf'
