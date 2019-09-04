@@ -39,9 +39,10 @@ bookmark_unset_cwd() {
 # Navigate (cd) to a bookmark with fzf
 bookmark_cd_fzf() {
     local bookmarks bookmark
+    local search="$@"
 
     bookmarks=$(cat "$BOOKMARK_FILE")
-    bookmark=$(echo -n "$bookmarks" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<<"$bookmarks"))) )
+    bookmark=$(echo -n "$bookmarks" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<<"$bookmarks"))) --query="$search" )
 
     cd "$bookmark"
 }
