@@ -85,9 +85,6 @@
     acp = "!f() { git add . && git commit -m \"$1\" && git push; }; f"
 [color]
     ui = true
-[diff]
-    tool = vimdiff
-    algorithm = minimal
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
@@ -98,17 +95,18 @@
     added = green bold
     changed = red bold
     untracked = red bold
-[merge]
-    tool = vimdiff
-    conflictstyle = diff3
-    keepBackup = false
-[mergetool]
-    prompt = false
-[difftool]
-    prompt = false
 [help]
     autocorrect = 50
 [diff-so-fancy]
     stripLeadingSymbols = false
 [fetch]
 	prune = true
+[merge]
+   tool = intellij
+[mergetool "intellij"]
+   cmd = idea.sh merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+   trustExitCode = true
+[diff]
+   tool = intellij
+[difftool "intellij"]
+   cmd = idea.sh diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
