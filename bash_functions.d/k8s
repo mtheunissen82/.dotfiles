@@ -1,0 +1,7 @@
+#!/bin/bash
+
+alias kc=kubectl
+alias mk=minikube
+
+# Mitigate bug in my brain
+alias minicube=minikube
