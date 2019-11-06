@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Kubectl
 alias kc=kubectl
-alias mk=minikube
+alias kcga='kubectl get all -o wide'
 
-# Mitigate bug in my brain
+# Minikube
+alias mk=minikube
 alias minicube=minikube
+
