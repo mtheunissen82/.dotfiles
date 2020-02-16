@@ -2,8 +2,8 @@
 
 # Settings
 TWOFA_HOME="$HOME/.2fa"
-TWOFA_GPG_RECIPIENT="mtheunissen82@gmail.com"
-TWOFA_GPG_KEYID="63EDFD29B8457753662ECA0D8491DD0B5D61D3C0"
+TWOFA_GPG_RECIPIENT="emtyr@protonmail.com"
+TWOFA_GPG_KEYID="B12E08475E0604B876785CEC34D6AACD8F195D67"
 
 # Binaries
 GPG_BIN=$(which gpg)
@@ -17,7 +17,7 @@ __2fa_init() {
 }
 
 __2fa_list() {
-    tree $TWOFA_HOME
+    tree $TWOFA_HOME | sed 's/.gpg//'
 }
 
 __2fa_create_service() {
@@ -29,7 +29,7 @@ __2fa_create_service() {
 
 __2fa_service_file() {
     local service="$1"
-    echo "${TWOFA_HOME}/${service}.asc"
+    echo "${TWOFA_HOME}/${service}.gpg"
 }
 
 __2fa_generate_totp() {
