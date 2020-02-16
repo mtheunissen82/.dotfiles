@@ -91,7 +91,7 @@
     // Allow VSCodeVim to change status bar color based on mode
     "vim.statusBarColorControl": true,
     // Automatically apply the global flag, /g, to substitute commands. When set to true, use /g to mean only first match should be replaced.
-    "vim.substituteGlobalFlag": true,
+    "vim.gdefault": true,
     // Number of lines to scroll with CTRL-U and CTRL-D commands.
     "vim.scroll": 15,
     // Enable the Surround plugin for Vim.
@@ -107,5 +107,34 @@
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "shellcheck.disableVersionCheck": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "gitlens.advanced.messages": {
+        "suppressFileNotUnderSourceControlWarning": true
+    },
+    "explorer.confirmDelete": false,
+    "trailing-spaces.highlightCurrentLine": false,
+    "trailing-spaces.includeEmptyLines": false,
+    "trailing-spaces.syntaxIgnore": [
+        "markdown"
+    ],
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "php.validate.run": "onType",
+    "php.validate.enable": false,
+    "php.suggest.basic": false,
+    "vs-kubernetes": {
+        "vs-kubernetes.minikube-path": "/home/marc/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+    },
+    "phpcs.standard": "PSR12",
+    "explorer.confirmDragAndDrop": false,
+    "blade.format.enable": true,
 }

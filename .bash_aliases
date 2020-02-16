@@ -30,6 +30,7 @@ alias l='less'
 alias vagrantsup='vagrant up && vagrant ssh'
 alias ag='ag --color --pager "less -RF"'
 alias stat='stat -c "%n %A (%a) %U %G %s"'
+alias les='less'
 
 # Docker
 alias dex='docker exec'
