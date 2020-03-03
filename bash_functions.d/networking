@@ -1,0 +1,6 @@
+#!/bin/bash
+
+dhcpscan() {
+    sudo nmap --script broadcast-dhcp-discover
+}
+
