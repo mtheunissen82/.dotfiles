@@ -102,12 +102,13 @@
     "vim.visualstar": true,
     // Comma-separated list of motion keys that should wrap to next/previous line.
     "vim.whichwrap": "h,l,<,>,[,]",
+    "vim.foldfix": true,
     "workbench.colorCustomizations": {
         "statusBar.background": "#005f5f",
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "shellcheck.disableVersionCheck": true,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -137,4 +138,11 @@
     "phpcs.standard": "PSR12",
     "explorer.confirmDragAndDrop": false,
     "blade.format.enable": true,
+    "python.jediEnabled": false,
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "editor.lineNumbers": "relative",
 }
