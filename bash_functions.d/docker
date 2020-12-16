@@ -1,0 +1,17 @@
+#!/bin/bash
+
+docker_image_rm_fzf() {
+    local images selection
+
+    images="$(docker image ls)"
+    selection="$(echo "$images" | fzf-tmux --multi --reverse)"
+
+    if [[ $selection ]]; then
+        local image_ids="$(echo -n "$selection" | awk '{print $3}')"
+        docker image rm -f $image_ids
+    fi
+}
+
+alias dils='docker image ls'
+alias dirm='docker_image_rm_fzf'
+alias dcls='docker container ls'
