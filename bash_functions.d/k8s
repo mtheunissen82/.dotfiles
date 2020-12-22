@@ -3,6 +3,7 @@
 # Kubectl
 alias kc=kubectl
 alias kcga='kubectl get all -o wide'
+alias kcd='kubectl describe'
 
 # Minikube
 alias mk=minikube
