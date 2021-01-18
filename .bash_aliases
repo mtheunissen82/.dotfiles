@@ -31,6 +31,9 @@ alias vagrantsup='vagrant up && vagrant ssh'
 alias ag='ag --color --pager "less -RF"'
 alias stat='stat -c "%n %A (%a) %U %G %s"'
 alias les='less'
+alias python='python3'
+# https://github.com/sharkdp/bat
+alias cat='bat'
 
 # Docker
 alias dex='docker exec'
