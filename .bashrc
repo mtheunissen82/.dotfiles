@@ -60,6 +60,11 @@ export HISTTIMEFORMAT='%d-%m-%Y %T '
 # Less
 export LESS="-IRFX"
 
+# Misc
+if command -v bat &> /dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
 # Git
 # Create g<alias> shortcuts for all git aliases and enable git autocompletion
 for al in $(__git_get_config_variables "alias"); do
