@@ -18,20 +18,20 @@
     a = add
     ai = add --interactive
     ap = add --patch
-    af = "!/bin/bash -i -c 'git_add_file_fzf \"$@\"' --"
+    af = "!/usr/bin/env bash -i -c 'git_add_file_fzf \"$@\"' --"
     pu = push
     pua = push --all
     pm = pull --rebase=false
     pr = pull --rebase
     cp = cherry-pick
     cl = clone
-    co = "!/bin/bash -i -c 'git_checkout_fzf' --"
-    cf = "!/bin/bash -i -c 'git_checkout_file_fzf \"$@\"' --"
+    co = "!/usr/bin/env bash -i -c 'git_checkout_fzf' --"
+    cf = "!/usr/bin/env bash -i -c 'git_checkout_file_fzf \"$@\"' --"
     br = branch
     fa = fetch --all
-    ct = "!/bin/bash -i -c 'git_create_commit_with_template \"$@\"' --"
-    bt = "!/bin/bash -i -c 'git_create_branch_with_template \"$@\"' --"
-    bd = "!/bin/bash -i -c 'git_branch_delete_fzf \"$@\"' --"
+    ct = "!/usr/bin/env bash -i -c 'git_create_commit_with_template \"$@\"' --"
+    bt = "!/usr/bin/env bash -i -c 'git_create_branch_with_template \"$@\"' --"
+    bd = "!/usr/bin/env bash -i -c 'git_branch_delete_fzf \"$@\"' --"
 
     ; Diff and merge
     d = "!f() { git diff --patch-with-stat --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"
@@ -50,7 +50,7 @@
     ll = log --pretty=format:"%C(yellow)%h%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ldr = log --pretty=format:"%C(yellow)%h\\ %ad%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    lf = "!/bin/bash -i -c 'git_log_file_fzf \"$1\"' --"
+    lf = "!/usr/bin/env bash -i -c 'git_log_file_fzf \"$1\"' --"
 
     ; Reset
     r = reset
@@ -59,7 +59,7 @@
     rh = reset --hard
     rh1 = reset HEAD^ --hard
     rh2 = reset HEAD^^ --hard
-    rf = "!/bin/bash -i -c 'git_reset_file_fzf \"$@\";' --"
+    rf = "!/usr/bin/env bash -i -c 'git_reset_file_fzf \"$@\";' --"
 
     ; Stashing
     sp = stash --patch
