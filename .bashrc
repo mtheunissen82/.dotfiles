@@ -2,7 +2,7 @@
 [[ -z "$PS1" ]] && return
 
 # Load tmux on startup with Base session
-if [[ -f ~/.tmux_on_startup ]] && \
+if [[ -z $NO_TMUX ]] && \
     command -v tmux > /dev/null && \
     [[ ! $TERM =~ screen ]] && \
     [[ -z $TMUX ]]
