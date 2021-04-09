@@ -22,23 +22,18 @@ call plug#begin('~/.vim/plugged')
 
 " Plugins {{{
 
+Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'evidens/vim-twig'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'keith/tmux.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'stephpy/vim-php-cs-fixer'
 Plug 'stephpy/vim-yaml'
-Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-pathogen'
 Plug 'tpope/vim-repeat'
