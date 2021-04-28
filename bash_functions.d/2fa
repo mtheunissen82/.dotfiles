@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Settings
 TWOFA_HOME="$HOME/.2fa"
