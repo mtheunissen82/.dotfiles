@@ -5,9 +5,12 @@ TWOFA_HOME="$HOME/.2fa"
 TWOFA_GPG_RECIPIENT="emtyr@protonmail.com"
 TWOFA_GPG_KEYID="B12E08475E0604B876785CEC34D6AACD8F195D67"
 
-# Binaries
+# Required binaries
 GPG_BIN=$(which gpg)
 OATHTOOL_BIN=$(which oathtool)
+
+# Misc.
+MACHINE_OS="$(uname -s)"
 
 __2fa_init() {
     [[ -z $GPG_BIN ]] && echo "gpg binary not found" >&2 && exit 1
@@ -24,23 +27,67 @@ __2fa_create_service() {
     local service="$1"
     local secret="$2"
 
-    echo -n "$secret" | $GPG_BIN --encrypt --sign --armor --local-user "$TWOFA_GPG_KEYID" --recipient "$TWOFA_GPG_RECIPIENT" --output "$(__2fa_service_file $service)"
+    echo -n "$secret" | $GPG_BIN --encrypt --sign --armor --local-user "$TWOFA_GPG_KEYID" --recipient "$TWOFA_GPG_RECIPIENT" --output "$(__2fa_service_file_path $service)"
 }
 
-__2fa_service_file() {
+# Generate service file path based on given service name
+__2fa_service_file_path() {
     local service="$1"
     echo -n "${TWOFA_HOME}/${service}.gpg"
 }
 
 __2fa_generate_totp() {
     local service="$1"
+    shift
 
-    [[ ! -s "$(__2fa_service_file $service)" ]] && echo "Service not found" >&2 && return 1
+    # print totp code to stdout or clipboard (default)
+    local option_print=unset
 
-    local secret="$($GPG_BIN --decrypt --quiet --local-user "$TWOFA_GPG_KEYID" --recipient "$TWOFA_GPG_RECIPIENT" -- "$(__2fa_service_file $service)" 2>/dev/null)"
-    local code="$($OATHTOOL_BIN --base32 --totp "$secret")"
+    while getopts "p" option; do
+        case "${option}" in
+            p)
+                option_print=1
+                ;;
+            *)
+                __2fa_print_help
+                ;;
+        esac
+    done
+    shift $((OPTIND-1))
 
-    echo -n $code
+    [[ ! -s "$(__2fa_service_file_path $service)" ]] && {
+        echo "Service not found" >&2
+        return 1
+    }
+
+    local secret="$($GPG_BIN --decrypt --quiet --local-user "$TWOFA_GPG_KEYID" --recipient "$TWOFA_GPG_RECIPIENT" -- "$(__2fa_service_file_path $service)" 2>/dev/null)"
+
+    [[ $? -ne 0 ]] && {
+        echo "GPG error" >&2
+        return 1
+    }
+
+    local totp_code="$($OATHTOOL_BIN --base32 --totp "$secret")"
+
+    [[ $? -ne 0 ]] && {
+        echo "Oathtool error" >&2
+        return 1
+    }
+
+    if [[ $option_print -eq 1 ]]; then
+        echo $totp_code
+    else
+        if [[ $MACHINE_OS == "Darwin" ]]; then
+            echo -n $totp_code | pbcopy
+        elif [[ $MACHINE_OS == "Linux" ]]; then
+            # TODO: fix clipboard copy for Linux later
+            echo "Linux clipboard not yet implemented" >&2
+            return 1
+        else
+            echo "Clipboard functionality is not supported for machine OS \"${MACHINE_OS}\"" >&2
+            return 1
+        fi
+    fi
 }
 
 __2fa_print_help() {
@@ -49,21 +96,17 @@ Usage:
     2fa <command> [<args>...]
 
 Commands:
-    list - List available 2fa services.
+    list (alias: l) - List available 2fa services.
         2fa list
-        2fa l
 
-    create - Create a new totp service.
+    create (alias: c) - Create a new totp service.
         2fa create <service> <secret>
-        2fa c <service> <secret>
 
-    generate - Generate a totp code for a given service.
-        2fa generate <service>
-        2fa g <service>
+    generate (alias: g) - Generate a totp code for a given service.
+        2fa generate <service> [ -p ]
 
-    help - Display help text.
-        2fa help
-        2fa h"
+    help (alias: h) - Display help text.
+        2fa help"
 
     echo "$help" >&2 && return 1
 }
@@ -72,16 +115,17 @@ Commands:
     __2fa_init
 
     local command=$1
+    shift
 
     case "$command" in
         "list" | "l")
             __2fa_list
             ;;
         "create" | "c")
-            __2fa_create_service "$2" "$3"
+            __2fa_create_service "$@"
             ;;
         "generate" | "g")
-            __2fa_generate_totp "$2"
+            __2fa_generate_totp "$@"
             ;;
         "help" | "h" | "")
             __2fa_print_help
