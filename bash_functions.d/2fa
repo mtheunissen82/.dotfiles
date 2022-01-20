@@ -29,13 +29,13 @@ __2fa_create_service() {
 
 __2fa_service_file() {
     local service="$1"
-    echo "${TWOFA_HOME}/${service}.gpg"
+    echo -n "${TWOFA_HOME}/${service}.gpg"
 }
 
 __2fa_generate_totp() {
     local service="$1"
 
-    [[ -z "$(__2fa_service_file $service)" ]] && echo "Service not found" >&2 && exit 1
+    [[ ! -s "$(__2fa_service_file $service)" ]] && echo "Service not found" >&2 && return 1
 
     local secret="$($GPG_BIN --decrypt --quiet --local-user "$TWOFA_GPG_KEYID" --recipient "$TWOFA_GPG_RECIPIENT" -- "$(__2fa_service_file $service)" 2>/dev/null)"
     local code="$($OATHTOOL_BIN --base32 --totp "$secret")"
