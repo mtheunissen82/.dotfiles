@@ -1,5 +1,4 @@
 # Navigation
-shopt -s autocd
 alias cd..='cd ..'
 alias ..='cd ..'
 alias .2='cd ../..'
