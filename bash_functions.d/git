@@ -87,7 +87,7 @@ git_create_commit_with_template() {
 }
 
 git_get_current_branch() {
-    git branch --list | grep '^*' | awk '{ print $2 }'
+    git branch --list | grep '^\*' | awk '{print $2}'
 }
 
 git_reset_file_fzf() {
@@ -104,8 +104,8 @@ git_reset_file_fzf() {
 git_checkout_file_fzf() {
     local checkout_files checkout_selection
 
-    checkout_files=$(git status --porcelain | grep -E '^(A|\s?M)' | awk '{print $2}')
-    checkout_selection=$(echo -n "$checkout_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | diff-so-fancy --colors')
+    checkout_files=$(git status -s | grep -E '^(A|\s?M)' | awk '{print $2}')
+    checkout_selection=$(echo -n "$checkout_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $checkout_selection ]]; then
         git checkout -- $checkout_selection
@@ -117,7 +117,7 @@ git_add_file_fzf() {
     local git_root_path=$(git rev-parse --show-toplevel)
 
     add_files=$(git ls-files -om --exclude-standard --full-name -- "$git_root_path")
-    add_selection=$(echo -n "$add_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | diff-so-fancy --colors')
+    add_selection=$(echo -n "$add_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $add_selection ]]; then
         git add -- $add_selection
@@ -127,7 +127,7 @@ git_add_file_fzf() {
 git_branch_delete_fzf() {
     local branches branch_selection
 
-    branches=$(git branch --list | grep -v '^*')
+    branches=$(git branch --list | grep -v '^\*' | awk '{print $1}')
     branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$branches") )))
 
     if [[ $branch_selection ]]; then
@@ -159,7 +159,7 @@ git_log_file_fzf() {
         return 1
     fi
 
-    commit_selection=$(git log --no-decorate --follow --format='format:%h - %Cgreen%s%Creset - %an' "$file_selection" | fzf-tmux -d 100% --ansi --preview="git show --color --pretty=fuller {1} -- \"$file_selection\" | diff-so-fancy" | awk '{print $1}')
+    commit_selection=$(git log --no-decorate --follow --format='format:%h - %Cgreen%s%Creset - %an' "$file_selection" | fzf-tmux -d 100% --ansi --preview="git show --color --pretty=fuller {1} -- \"$file_selection\" | delta" | awk '{print $1}')
 
     if [[ $commit_selection ]]; then
         git show "$commit_selection" -- "$file_selection"
