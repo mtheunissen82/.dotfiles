@@ -42,7 +42,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 lua << END
 require('lualine').setup {
   options = {
-    theme = 'github'
+    theme = 'github_dark'
   }
 }
 END
@@ -51,9 +51,6 @@ END
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 
 " ========== Plugin: nvim-tree ==========
-let g:nvim_tree_highlight_opened_files = 1
-let g:nvim_tree_respect_buf_cwd = 1
-
 lua << END
 require'nvim-tree'.setup {
   update_cwd = true,
@@ -72,8 +69,12 @@ require'nvim-tree'.setup {
     }
   },
   view = {
-    auto_resize = true,
-  }
+    adaptive_size = true,
+  },
+  renderer = {
+    highlight_opened_files = "all",
+  },
+  respect_buf_cwd = true,
 }
 END
 
