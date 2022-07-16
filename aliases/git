@@ -1,0 +1,69 @@
+# shellcheck shell=bash
+
+# misc
+alias gs='git status --short'
+alias gsv='git status --verbose'
+alias gsh='git show --patch-with-stat | delta'
+alias ga='git add'
+alias gai='git add --interactive'
+alias gap='git add --patch'
+alias gaf='git_add_file_fzf'
+alias gpu='git push'
+alias gpua='git push --all'
+alias gpuf='git push --force'
+alias gpm='git pull --rebase=false'
+alias gpr='git pull --rebase'
+alias gcp='git cherry-pick'
+alias gbr='git branch'
+alias gcl='git clone'
+alias gco='git_checkout_fzf'
+alias gcf='git_checkout_file_fzf'
+alias gbd='git_branch_delete_fzf'
+
+# diff & merge
+alias gd='git diff --patch-with-stat | delta'
+alias gds='git diff --stat'
+alias gdc="git diff --cached | delta"
+alias gdt='git difftool'
+alias gmt='git mergetool'
+
+# commit
+alias gc='git commit'
+alias gcm='git commit --message'
+alias gca='git commit -a --amend -C HEAD'
+
+# log
+alias gls='git log --pretty=format:"%C(yellow)%h%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --all --graph'
+alias gll='git log --pretty=format:"%C(yellow)%h%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
+alias gld='git log --pretty=format:"%C(yellow)%h\\ %ad%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+alias gldr='git log --pretty=format:"%C(yellow)%h\\ %ad%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative'
+
+function glf() {
+    git_log_file_fzf "$@"
+}
+
+# reset
+alias gr='git reset'
+alias gr1='git reset HEAD^'
+alias gr2='git reset HEAD^^'
+alias grh='git reset --hard'
+alias grh1='git reset --hard HEAD^'
+alias grh2='git reset --hard HEAD^^'
+
+function grf() {
+    git_reset_file_fzf "$@"
+}
+
+# stash
+alias gsp='git stash --patch'
+alias gsl='git stash list'
+alias gsa='git stash apply'
+alias gss='git stash save'
+alias gsd='git stash drop'
+
+# combinations
+alias gfs='git fetch -av && git status -v'
+
+function gacp() {
+    git add . && git commit --message "$1" && git push
+}
