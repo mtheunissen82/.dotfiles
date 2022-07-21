@@ -7,6 +7,7 @@ alias ga='git add'
 alias gai='git add --interactive'
 alias gap='git add --patch'
 alias gaf='git_add_file_fzf'
+alias gfa='git fetch --all'
 alias gpu='git push'
 alias gpua='git push --all'
 alias gpuf='git push --force'
@@ -20,13 +21,16 @@ alias gcf='git_checkout_file_fzf'
 alias gbd='git_branch_delete_fzf'
 
 function gsh() {
-    git show --patch-with-stat "$@" | delta
+    git show --patch-with-stat "$@" | delta --diff-so-fancy
 }
 
 # diff & merge
-alias gd='git diff --patch-with-stat | delta'
+function gd() {
+    git diff --patch-with-stat "$@" | delta --diff-so-fancy
+}
+
 alias gds='git diff --stat'
-alias gdc="git diff --cached | delta"
+alias gdc="git diff --cached | delta --diff-so-fancy"
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
