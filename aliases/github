@@ -1,0 +1,4 @@
+# shellcheck shell=bash
+
+alias ghprv='gh pr view --web'
+alias ghprm='gh pr merge'
