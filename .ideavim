@@ -1,4 +1,6 @@
 Plug 'tpope/vim-surround'
 
-set surround
 set relativenumber
+set number
+
+set surround
