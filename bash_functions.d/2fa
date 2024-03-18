@@ -12,6 +12,9 @@ OATHTOOL_BIN=$(which oathtool)
 # Misc.
 MACHINE_OS="$(uname -s)"
 
+# Configure TTY
+export GPG_TTY=$(tty)
+
 __2fa_init() {
     [[ -z $GPG_BIN ]] && echo "gpg binary not found" >&2 && exit 1
     [[ -z $OATHTOOL_BIN ]] && echo "oathtool binary not found" >&2 && exit 1
