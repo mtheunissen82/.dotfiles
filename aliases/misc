@@ -40,7 +40,8 @@ alias cat='bat'
 alias dex='docker exec'
 alias dexit='docker exec --interactive --tty'
 alias di='docker inspect'
-alias dc='docker-compose'
+alias dc='docker compose'
+alias dcup='docker compose up --detach'
 
 # Networking
 alias ils='ip link show'
