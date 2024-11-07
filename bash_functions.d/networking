@@ -4,3 +4,7 @@ dhcpscan() {
     sudo nmap --script broadcast-dhcp-discover
 }
 
+myip() {
+    curl ipinfo.io
+}
+
