@@ -1,0 +1,8 @@
+#!/bin/bash
+
+WEATHER_DEFAULT_LOCATION="Kerkdriel"
+
+weather()
+{
+  curl --silent "wttr.in/${1:=$WEATHER_DEFAULT_LOCATION}?m1"
+}
