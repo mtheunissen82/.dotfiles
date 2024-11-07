@@ -111,4 +111,6 @@
 [difftool "vscode"]
     cmd = code --new-window --wait --diff $LOCAL $REMOTE
 [pull]
-	rebase = false
+    rebase = false
+[url "ssh://git@github.com"]
+    insteadOf = https://github.com
