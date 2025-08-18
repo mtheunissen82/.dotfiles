@@ -77,8 +77,10 @@ __2fa_generate_totp() {
         return 1
     }
 
+    # print the totp code
     if [[ $option_print -eq 1 ]]; then
         echo $totp_code
+    # copy the totp code to clipboard
     else
         if [[ $MACHINE_OS == "Darwin" ]]; then
             echo -n $totp_code | pbcopy
@@ -96,26 +98,25 @@ __2fa_generate_totp() {
 __2fa_print_help() {
     local help="
 Usage:
-    2fa <command> [<args>...]
+    2fa [COMMAND]
 
 Commands:
     list (alias: l) - List available 2fa services.
-        2fa list
-
-    create (alias: c) - Create a new totp service.
-        2fa create <service> <secret>
-
-    generate (alias: g) - Generate a totp code for a given service.
-        2fa generate <service> [ -p ]
-
-    help (alias: h) - Display help text.
-        2fa help"
+    create SERVICE SECRET (alias: c) - Create a new totp service.
+    generate SERVICE [-p] (alias: g) - Generate a totp code for a given service.
+    help (alias: h) - Display help text."
 
     echo "$help" >&2 && return 1
 }
 
 2fa() {
     __2fa_init
+
+    # If no positional parameters are provided, print the 2fa list and exit
+    if [ $# -eq 0 ]; then
+        __2fa_list
+        return 0
+    fi
 
     local command=$1
     shift
@@ -130,11 +131,11 @@ Commands:
         "generate" | "g")
             __2fa_generate_totp "$@"
             ;;
-        "help" | "h" | "")
+        "help" | "h")
             __2fa_print_help
             ;;
         *)
-            echo "Invalid command" >&2
+            echo "Invalid command \"$command\"" >&2
             __2fa_print_help
             ;;
     esac
