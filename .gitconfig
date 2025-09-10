@@ -15,7 +15,6 @@
     ; General shortcuts
     s = status --short
     sv = status --verbose
-    sh = "!f() { git show --patch-with-stat --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"
     a = add
     ai = add --interactive
     ap = add --patch
