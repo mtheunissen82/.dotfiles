@@ -10,14 +10,16 @@ endif
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'github/copilot.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/plenary.nvim' " required dependency for telescope
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'projekt0n/github-nvim-theme'
 Plug 'tpope/vim-fugitive'
@@ -26,14 +28,15 @@ call plug#end()
 
 " Change <Leader> to space
 let mapleader=","
+set number
 set relativenumber
 
 " ========== Theme ==========
-colorscheme github_*
+colorscheme github_dark
 
 " ========== Editing ==========
 " Shortcut for editing my vimrc
-nnoremap <leader>v :edit $MYVIMRC<CR>
+nnoremap <leader>v :edit $MYVIMRC<cr>
 
 " Source vim config after saving it
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -48,7 +51,7 @@ require('lualine').setup {
 END
 
 " ========== Plugin: fzf ==========
-let $FZF_DEFAULT_COMMAND = 'fd --type f'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden'
 
 " ========== Plugin: nvim-tree ==========
 lua << END
@@ -78,9 +81,15 @@ require'nvim-tree'.setup {
 }
 END
 
-nnoremap <Leader>e :NvimTreeToggle<CR>
-nnoremap <Leader>r :NvimTreeRefresh<CR>
-nnoremap <Leader>n :NvimTreeFindFile<CR>
+nnoremap <Leader>e :NvimTreeToggle<cr>
+nnoremap <Leader>r :NvimTreeRefresh<cr>
+nnoremap <Leader>n :NvimTreeFindFile<cr>
+
+" ========== Plugin: telescope ==========
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ========== Plugin: coc-prettier ==========
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
