@@ -52,3 +52,6 @@ alias hosts='sudo vim /etc/hosts'
 # Apt
 alias apti='apt_install_fzf'
 alias aptr='apt_remove_fzf'
+
+# Development
+alias dev='kitty --detach --session ~/.config/kitty/dev.session'
