@@ -10,6 +10,7 @@ endif
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'f-person/git-blame.nvim'
 Plug 'github/copilot.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -18,18 +19,24 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim' " required dependency for telescope
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'projekt0n/github-nvim-theme'
-Plug 'tpope/vim-fugitive'
+Plug 'rose-pine/vim'
 Plug 'tpope/vim-surround'
+Plug 'windwp/nvim-autopairs'
 call plug#end()
 
 " Change <Leader> to space
 let mapleader=","
+
+" Set relative line numbers
 set number
 set relativenumber
+
+" Disable the default splash screen
+set shortmess+=I
 
 " ========== Theme ==========
 colorscheme github_dark
@@ -90,12 +97,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" ========== Plugin: coc-prettier ==========
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-vnoremap <Leader>f <Plug>(coc-format-selected)
-nnoremap <Leader>f <Plug>(coc-format-selected)
 
 " ========== Plugin: coc.nvim ==========
 
