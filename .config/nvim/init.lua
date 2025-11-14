@@ -2,7 +2,7 @@
 vim.cmd("set shortmess+=I")
 
 require("config.options")
-require("config.mappings")
+require("config.keymaps")
 require("config.lazy")
 
-vim.cmd('colorscheme github_dark')
+vim.cmd("colorscheme github_dark")
