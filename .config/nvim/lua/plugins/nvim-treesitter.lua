@@ -6,19 +6,27 @@ return {
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
+        "bash",
+        "css",
         "html",
         "java",
+        "javascript",
+        "json",
         "lua",
         "markdown",
         "python",
+        "toml",
+        "tsx",
         "typescript",
+        "yaml",
+      },
+      highlight = {
+        enable = true,
+        disable = {},
+        additional_vim_regex_highlighting = false,
       },
       sync_install = false,
       auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
     },
   },
   {
