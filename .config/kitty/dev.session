@@ -6,7 +6,7 @@ os_window_state maximized
 
 layout splits
 
-launch --hold --var window=nvim nvim
+launch --hold --var window=nvim nvim -c 'NvimTreeOpen'
 launch --var window=shell
 
 focus_matching_window var:window=shell
