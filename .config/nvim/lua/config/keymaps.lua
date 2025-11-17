@@ -42,11 +42,11 @@ map("n", "<leader>v", function()
   vim.cmd("tabnew " .. vim.fn.stdpath("config"))
 end, { desc = "Edit nvim config in new tab" })
 
--- Plugin: Comment.nvim
+-- Plugin: Comment
 map("n", "<C-/>", "gcc", { remap = true })
 map("v", "<C-/>", "gc", { remap = true })
 
--- Plugin: telescope.nvim
+-- Plugin: telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files path_display={'shorten'}<cr>", { desc = "Telescope find files" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Telescope live grep" })
 map("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "Telescope find buffers" })
@@ -58,5 +58,8 @@ map(
   { desc = "Telescope find previously opened files" }
 )
 
--- Plugin: neo-tree.nvim
+-- Plugin: neo-tree
 map("n", "<leader>e", "<cmd>Neotree toggle=true<cr>", { desc = "neo-tree toggle file explorer" })
+
+-- Plugin: lazygit
+map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
