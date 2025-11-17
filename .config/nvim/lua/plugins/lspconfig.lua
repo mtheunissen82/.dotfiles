@@ -1,8 +1,15 @@
 return {
-  "neovim/nvim-lspconfig",
-  config = function()
-    vim.lsp.enable("ts_ls")
-    vim.lsp.enable("lua_ls")
-    vim.lsp.enable("java_language_server")
-  end,
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      vim.lsp.enable("ts_ls")
+      vim.lsp.enable("lua_ls")
+    end,
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    config = function()
+      vim.lsp.enable("jdtls")
+    end,
+  },
 }
