@@ -34,8 +34,8 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 -- Save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
--- Open Lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+-- Open Lazy plugin manager
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy plugin manager" })
 
 -- Edit nvim config in a new tab
 map("n", "<leader>v", function()
@@ -62,4 +62,4 @@ map(
 map("n", "<leader>e", "<cmd>Neotree toggle=true<cr>", { desc = "neo-tree toggle file explorer" })
 
 -- Plugin: lazygit
-map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Open LazyGit" })
