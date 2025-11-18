@@ -62,4 +62,20 @@ map(
 map("n", "<leader>e", "<cmd>Neotree toggle=true<cr>", { desc = "neo-tree toggle file explorer" })
 
 -- Plugin: lazygit
-map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Open LazyGit" })
+map("n", "<leader>gg", function()
+  Snacks.lazygit()
+end, { desc = "Open LazyGit" })
+
+-- Plugin: gitsigns
+map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git blame file" })
+
+-- Plugin: flash
+map({ "n", "x", "o" }, "s", function()
+  require("flash").jump()
+end, { desc = "Flash" })
+map({ "n", "x", "o" }, "S", function()
+  require("flash").treesitter()
+end, { desc = "Flash Treesitter" })
+map("c", "<c-s>", function()
+  require("flash").toggle()
+end, { desc = "Toggle Flash search" })

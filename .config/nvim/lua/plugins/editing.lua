@@ -14,6 +14,11 @@ return {
   },
   { "github/copilot.vim" },
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
