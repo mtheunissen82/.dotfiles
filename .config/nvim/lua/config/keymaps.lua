@@ -59,7 +59,12 @@ map(
 )
 
 -- Plugin: neo-tree
-map("n", "<leader>e", "<cmd>Neotree toggle=true<cr>", { desc = "neo-tree toggle file explorer" })
+map(
+  "n",
+  "<leader>e",
+  "<cmd>Neotree position=current reveal=true toggle=true<cr>",
+  { desc = "neo-tree toggle file explorer" }
+)
 
 -- Plugin: lazygit
 map("n", "<leader>gg", function()
