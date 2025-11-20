@@ -14,6 +14,7 @@ return {
   },
   {
     "mfussenegger/nvim-jdtls",
+    dependencies = { "mason-org/mason.nvim", opts = {} },
     config = function()
       vim.lsp.enable("jdtls")
     end,
