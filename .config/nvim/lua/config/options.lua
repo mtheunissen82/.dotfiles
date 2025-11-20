@@ -8,6 +8,7 @@ g.maplocalleader = "\\"
 -- Misc.
 o.clipboard = "unnamedplus"
 o.timeoutlen = 400
+o.hidden = false
 
 -- UI
 o.cursorline = true
