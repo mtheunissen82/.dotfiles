@@ -19,6 +19,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "github_dark" } },
+  install = { colorscheme = { "catppuccin" } },
   checker = { enabled = true },
 })
