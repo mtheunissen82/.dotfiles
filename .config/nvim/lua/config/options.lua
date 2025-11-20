@@ -1,31 +1,35 @@
+local g = vim.g
+local o = vim.o
+
 -- Leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = "\\"
+g.mapleader = ","
+g.maplocalleader = "\\"
 
 -- Misc.
-vim.opt.timeoutlen = 400
-vim.opt.clipboard = "unnamedplus"
+o.clipboard = "unnamedplus"
+o.timeoutlen = 400
 
 -- UI
-vim.opt.cursorline = true
-vim.opt.wrap = false
-vim.opt.signcolumn = "yes"
-vim.opt.laststatus = 3
+o.cursorline = true
+o.wrap = false
+o.signcolumn = "yes"
+o.laststatus = 3
 
 -- Line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+o.number = true
+o.relativenumber = true
+o.numberwidth = 2
 
 -- Indenting
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.autoindent = true
+o.expandtab = true
+o.shiftwidth = 2
+o.smartindent = true
+o.tabstop = 2
+o.softtabstop = 2
+o.autoindent = true
 
 -- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+o.ignorecase = true
+o.smartcase = true
+o.hlsearch = true
+o.incsearch = true
