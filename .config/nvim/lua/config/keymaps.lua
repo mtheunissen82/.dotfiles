@@ -49,7 +49,7 @@ map("v", "<C-/>", "gc", { remap = true })
 -- Plugin: telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files path_display={'shorten'}<cr>", { desc = "Telescope find files" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Telescope live grep" })
-map("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "Telescope find buffers" })
+map("n", "<leader>b", "<cmd>Telescope buffers path_display={'shorten'}<cr>", { desc = "Telescope find buffers" })
 map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Telescope find keymaps" })
 map(
   "n",
