@@ -52,6 +52,9 @@ return {
             node_decremental = "<C-Down>",
           },
         },
+        indent = {
+          enable = true,
+        },
         textobjects = {
           select = {
             enable = true,
