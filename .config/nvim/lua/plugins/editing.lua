@@ -22,10 +22,11 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        lua = { "stylua" },
-        javascript = { "prettierd" },
         css = { "prettierd" },
         html = { "prettierd" },
+        java = { "google-java-format" },
+        javascript = { "prettierd" },
+        lua = { "stylua" },
         typescript = { "prettierd" },
       },
       format_on_save = {
