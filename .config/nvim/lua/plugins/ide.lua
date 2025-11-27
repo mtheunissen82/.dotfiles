@@ -28,12 +28,11 @@ return {
     ft = { "java" },
     config = function()
       require("java").setup({
-        -- jdtls = {
-        --   version = "v1.43.0",
-        -- },
-        -- jdk = { auto_install = false },
+        jdtls = {
+          version = "v1.43.0",
+        },
+        jdk = { auto_install = true },
       })
-      -- vim.lsp.config("jdtls", {})
       require("lspconfig").jdtls.setup({})
     end,
   },
