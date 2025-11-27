@@ -1,5 +1,5 @@
 local g = vim.g
-local o = vim.o
+local o = vim.opt
 
 -- Leader key
 g.mapleader = ","
