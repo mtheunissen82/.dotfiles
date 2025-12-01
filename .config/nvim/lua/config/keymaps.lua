@@ -7,6 +7,12 @@ map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr =
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
+-- Improve scroll navigation
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll half page down and center cursor" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half page up and center cursor" })
+map("n", "<C-f>", "<C-f>zz", { desc = "Scroll full page down and center cursor" })
+map("n", "<C-b>", "<C-b>zz", { desc = "Scroll full page up and center cursor" })
+
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
