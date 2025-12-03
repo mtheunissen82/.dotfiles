@@ -37,6 +37,7 @@ o.incsearch = true
 
 -- Misc.
 o.autoread = true -- Automatically reload files changed outside of Neovim
+o.autowriteall = true -- Automatically save buffers when navigating away from them
 o.clipboard = "unnamedplus"
 o.completeopt = "menu,menuone,noselect,preview" -- Better completion experience
 o.hidden = false
