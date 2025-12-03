@@ -8,15 +8,18 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "folke/tokyonight.nvim",
+    name = "tokyonight",
+    lazy = false,
     priority = 1000,
   },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- options = {
-      --   theme = "catppuccin",
-      -- },
-    },
+    opts = {},
   },
 }
