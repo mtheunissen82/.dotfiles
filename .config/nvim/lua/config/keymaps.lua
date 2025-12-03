@@ -90,3 +90,11 @@ end, { desc = "Flash Treesitter" })
 map("c", "<c-s>", function()
   require("flash").toggle()
 end, { desc = "Toggle Flash search" })
+
+-- Plugin: Snacks
+map("n", "<leader>so", function()
+  Snacks.scratch()
+end, { desc = "Open scratch buffer" })
+map("n", "<leader>ss", function()
+  Snacks.scratch.select()
+end, { desc = "Select scratch buffer" })
