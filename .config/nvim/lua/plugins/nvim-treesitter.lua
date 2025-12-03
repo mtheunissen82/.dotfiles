@@ -9,6 +9,8 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
+        ignore_install = {},
+        modules = {},
         ensure_installed = {
           "bash",
           "c",
