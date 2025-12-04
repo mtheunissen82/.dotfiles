@@ -41,7 +41,7 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- Delete current buffer
-map("n", "<C-z>", "<cmd>bdelete!<cr>", { desc = "Delete current buffer" })
+map("n", "<leader>z", "<cmd>bdelete!<cr>", { desc = "Delete current buffer" })
 
 -- Git
 map("n", "<leader>grf", "<cmd>!git restore %<cr><esc>", { desc = "Git restore current file" })
