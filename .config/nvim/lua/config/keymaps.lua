@@ -105,3 +105,8 @@ end, { desc = "Open scratch buffer" })
 map("n", "<leader>ss", function()
   Snacks.scratch.select()
 end, { desc = "Select scratch buffer" })
+
+-- Plugin: inc-rename
+vim.keymap.set("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
