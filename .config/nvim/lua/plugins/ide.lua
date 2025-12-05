@@ -139,7 +139,7 @@ return {
       -- depending on filetype, so this autocmd doesn't run for the first file.
       -- For that, we call directly below.
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "*.java",
+        pattern = "java",
         callback = attach_jdtls,
       })
 
