@@ -55,6 +55,18 @@ map("n", "<leader>v", function()
   vim.cmd("tabnew " .. vim.fn.stdpath("config"))
 end, { desc = "Edit nvim config in new tab" })
 
+-- Organize imports
+map("n", "<leader>oi", function()
+  if vim.bo.filetype == "java" then
+    require("jdtls").organize_imports()
+    return
+  end
+
+  vim.notify("Organize imports is not configured for filetype: '" .. vim.bo.filetype .. "'", vim.log.levels.WARN)
+end, {
+  desc = "Organize Imports",
+})
+
 -- Plugin: Comment
 map("n", "<C-/>", "gcc", { remap = true })
 map("v", "<C-/>", "gc", { remap = true })
