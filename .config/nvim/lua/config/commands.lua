@@ -68,3 +68,12 @@ vim.api.nvim_create_autocmd("CursorMovedI", {
     vim.lsp.buf.clear_references()
   end,
 })
+
+-- When opening terminal, enter interactive mode
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  desc = "Enter insert mode when opening a terminal",
+  callback = function()
+    vim.cmd("startinsert")
+  end,
+})
