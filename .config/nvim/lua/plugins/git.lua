@@ -14,17 +14,18 @@ return {
     },
   },
   {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    opts = {
-      enabled = true, -- if you want to enable the plugin
-      message_template = " <summary> • <date> • <author> • <<sha>>", -- template for the blame message, check the Message template section for more options
-      date_format = "%d-%m-%Y %H:%M:%S", -- template for the date, check Date format section for more options
-      virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
-    },
-  },
-  {
     "lewis6991/gitsigns.nvim",
-    opts = {},
+    opts = {
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol",
+        delay = 250,
+        ignore_whitespace = true,
+        virt_text_priority = 100,
+        use_focus = true,
+      },
+      current_line_blame_formatter = "<author>, <author_time:%R> - <summary> (<abbrev_sha>)",
+    },
   },
 }

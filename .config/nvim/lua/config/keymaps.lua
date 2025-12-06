@@ -98,6 +98,8 @@ end, { desc = "Open LazyGit" })
 
 -- Plugin: gitsigns
 map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git blame file" })
+map("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git preview hunk" })
+map("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Git reset hunk" })
 
 -- Plugin: flash
 map({ "n", "x", "o" }, "s", function()
