@@ -150,7 +150,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      vim.lsp.enable("ts_ls")
+      vim.lsp.enable("ts_ls") -- Typescript
+      vim.lsp.enable("pyright") -- Python
+      vim.lsp.enable("terraform_lsp") -- Terraform
 
       -- Configure Lua language server
       vim.lsp.config("lua_ls", {
@@ -162,7 +164,7 @@ return {
           },
         },
       })
-      vim.lsp.enable("lua_ls")
+      vim.lsp.enable("lua_ls") -- Lua
     end,
   },
   {
