@@ -83,6 +83,7 @@ return {
       })
     end,
   },
+  { "nvim-treesitter/nvim-treesitter-context", opts = {} },
   {
     "windwp/nvim-ts-autotag",
     opts = {},
