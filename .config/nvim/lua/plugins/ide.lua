@@ -152,7 +152,7 @@ return {
     config = function()
       vim.lsp.enable("ts_ls") -- Typescript
       vim.lsp.enable("pyright") -- Python
-      vim.lsp.enable("terraform_lsp") -- Terraform
+      vim.lsp.enable("terraformls") -- Terraform
 
       -- Configure Lua language server
       vim.lsp.config("lua_ls", {
