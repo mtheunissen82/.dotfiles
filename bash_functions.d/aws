@@ -1,0 +1,38 @@
+#!/bin/bash
+
+aws_credentials_to_env() {
+    if [ $# -eq 0 ]; then
+        echo "Please provide a profile"
+        return 1
+    fi
+
+    if ! aws configure list-profiles | grep -q "^$1\$"; then
+        echo "No profile named \"$1\" found"
+        return 1
+    fi
+
+    if ! aws sts get-caller-identity --profile "$1" > /dev/null 2>&1; then
+        echo "Not logged in. Fetching profile credentials..."
+        if ! aws sso login --profile "$1"; then
+            echo "Failed to login"
+            return 1
+        fi
+    else
+        echo "Already logged in."
+    fi
+
+    echo "Setting credentials in shell..."
+
+    cmd_output=$(aws configure export-credentials --profile "$1" --format env)
+    while IFS= read -r line; do
+        if [[ $line =~ ^export\ ([^\=]+)=(.+) ]]; then
+            var_name="${BASH_REMATCH[1]}"
+            var_value="${BASH_REMATCH[2]}"
+            export "$var_name"="$var_value"
+        else
+            echo "Error: Line doesn't match expected format: $line"
+        fi
+    done <<< "$cmd_output"
+
+    echo "Done!"
+}
