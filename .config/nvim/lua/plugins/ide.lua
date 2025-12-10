@@ -165,6 +165,7 @@ return {
         },
       })
       vim.lsp.enable("lua_ls") -- Lua
+      vim.lsp.enable("bashls") -- Bash
     end,
   },
   {
