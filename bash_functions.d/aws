@@ -25,14 +25,28 @@ aws_credentials_to_env() {
 
     cmd_output=$(aws configure export-credentials --profile "$1" --format env)
     while IFS= read -r line; do
-        if [[ $line =~ ^export\ ([^\=]+)=(.+) ]]; then
-            var_name="${BASH_REMATCH[1]}"
-            var_value="${BASH_REMATCH[2]}"
-            export "$var_name"="$var_value"
-        else
-            echo "Error: Line doesn't match expected format: $line"
-        fi
+        case "$line" in
+            export\ *=*)
+                # Strip leading "export " and split at '='
+                var_name=$(printf "%s" "$line" | sed -E 's/^export ([^=]+)=.*/\1/')
+                var_value=$(printf "%s" "$line" | sed -E 's/^export [^=]+=//')
+                export "$var_name=$var_value"
+                ;;
+            *)
+                echo "Error: Line doesn't match expected format: $line"
+                ;;
+        esac
     done <<< "$cmd_output"
 
     echo "Done!"
+}
+
+_aws_list_profiles() {
+    aws configure list-profiles 2>/dev/null
+}
+
+_aws_profiles_complete_zsh() {
+    local -a profiles
+    profiles=(${(f)"$(_aws_list_profiles)"})
+    _describe 'aws profiles' profiles
 }
