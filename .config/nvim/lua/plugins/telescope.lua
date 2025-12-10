@@ -1,3 +1,5 @@
+local actions = require("telescope.actions")
+
 return {
   "nvim-telescope/telescope.nvim",
   tag = "v0.1.9",
@@ -11,6 +13,14 @@ return {
     },
   },
   opts = {
+    defaults = {
+      mappings = {
+        i = {
+          -- Close telescope window on first escape press
+          ["<esc>"] = actions.close,
+        },
+      },
+    },
     pickers = {
       oldfiles = {
         cwd_only = true,
