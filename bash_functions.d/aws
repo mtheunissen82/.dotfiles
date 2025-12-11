@@ -32,8 +32,8 @@ aws_credentials_to_env() {
             export "$var_name=$var_value"
         else
             echo "Error: Line doesn't match expected format: $line"
-        fi <<<"$cmd_output"
-    done
+        fi
+    done <<<"$cmd_output"
 
     echo "Done!"
 }
