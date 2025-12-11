@@ -27,6 +27,7 @@ return {
         java = { "google-java-format" },
         javascript = { "prettierd" },
         lua = { "stylua" },
+        sh = { "shfmt" },
         typescript = { "prettierd" },
       },
       format_on_save = {
