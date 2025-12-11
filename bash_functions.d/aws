@@ -11,7 +11,7 @@ aws_credentials_to_env() {
         return 1
     fi
 
-    if ! aws sts get-caller-identity --profile "$1" > /dev/null 2>&1; then
+    if ! aws sts get-caller-identity --profile "$1" >/dev/null 2>&1; then
         echo "Not logged in. Fetching profile credentials..."
         if ! aws sso login --profile "$1"; then
             echo "Failed to login"
@@ -25,18 +25,15 @@ aws_credentials_to_env() {
 
     cmd_output=$(aws configure export-credentials --profile "$1" --format env)
     while IFS= read -r line; do
-        case "$line" in
-            export\ *=*)
-                # Strip leading "export " and split at '='
-                var_name=$(printf "%s" "$line" | sed -E 's/^export ([^=]+)=.*/\1/')
-                var_value=$(printf "%s" "$line" | sed -E 's/^export [^=]+=//')
-                export "$var_name=$var_value"
-                ;;
-            *)
-                echo "Error: Line doesn't match expected format: $line"
-                ;;
-        esac
-    done <<< "$cmd_output"
+        if echo "$line" | grep -q '^export [^=]\+=.*'; then
+            # Strip leading "export " and split at '='
+            var_name=$(printf "%s" "$line" | sed -E 's/^export ([^=]+)=.*/\1/')
+            var_value=$(printf "%s" "$line" | sed -E 's/^export [^=]+=//')
+            export "$var_name=$var_value"
+        else
+            echo "Error: Line doesn't match expected format: $line"
+        fi <<<"$cmd_output"
+    done
 
     echo "Done!"
 }
@@ -46,7 +43,10 @@ _aws_list_profiles() {
 }
 
 _aws_profiles_complete_zsh() {
-    local -a profiles
-    profiles=(${(f)"$(_aws_list_profiles)"})
+    local profiles=()
+    while IFS= read -r line; do
+        profiles+=("$line")
+    done < <(_aws_list_profiles)
+
     _describe 'aws profiles' profiles
 }
