@@ -1,45 +1,34 @@
 #!/bin/bash
 
-aws_credentials_to_env() {
+aws_sso_login() {
     if [ $# -eq 0 ]; then
-        echo "Please provide a profile"
+        echo "Please provide an sso-session name"
         return 1
     fi
 
-    if ! aws configure list-profiles | grep -q "^$1\$"; then
-        echo "No profile named \"$1\" found"
+    aws sso login --sso-session "$1"
+}
+
+aws_sso_to_env() {
+    if [ $# -eq 0 ]; then
+        echo "Please provide a profile name"
         return 1
     fi
 
-    if ! aws sts get-caller-identity --profile "$1" >/dev/null 2>&1; then
-        echo "Not logged in. Fetching profile credentials..."
-        if ! aws sso login --profile "$1"; then
-            echo "Failed to login"
-            return 1
-        fi
-    else
-        echo "Already logged in."
+    if ! _aws_is_profile_logged_in "$1"; then
+        echo "Profile '$1' is not logged in"
+        return 1
     fi
 
-    echo "Setting credentials in shell..."
-
-    cmd_output=$(aws configure export-credentials --profile "$1" --format env)
-    while IFS= read -r line; do
-        if echo "$line" | grep -q '^export [^=]\+=.*'; then
-            # Strip leading "export " and split at '='
-            var_name=$(printf "%s" "$line" | sed -E 's/^export ([^=]+)=.*/\1/')
-            var_value=$(printf "%s" "$line" | sed -E 's/^export [^=]+=//')
-            export "$var_name=$var_value"
-        else
-            echo "Error: Line doesn't match expected format: $line"
-        fi
-    done <<<"$cmd_output"
-
-    echo "Done!"
+    eval "$(aws configure export-credentials --profile "$1" --format env)"
 }
 
 _aws_list_profiles() {
     aws configure list-profiles 2>/dev/null
+}
+
+_aws_list_sso_sessions() {
+    grep -oE '^\[sso-session [^]]+\]' ~/.aws/config | sed -E 's/^\[sso-session (.+)\]$/\1/'
 }
 
 _aws_profiles_complete_zsh() {
@@ -49,4 +38,18 @@ _aws_profiles_complete_zsh() {
     done < <(_aws_list_profiles)
 
     _describe 'aws profiles' profiles
+}
+
+_aws_sso_sessions_complete_zsh() {
+    local sessions=()
+    while IFS= read -r line; do
+        sessions+=("$line")
+    done < <(_aws_list_sso_sessions)
+
+    _describe 'aws sso-sessions' sessions
+}
+
+_aws_is_profile_logged_in() {
+    local profile="$1"
+    aws sts get-caller-identity --profile "$profile" &>/dev/null
 }
