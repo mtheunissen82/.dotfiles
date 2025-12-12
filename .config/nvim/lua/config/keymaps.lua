@@ -102,12 +102,14 @@ map("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git preview h
 map("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Git reset hunk" })
 
 -- Plugin: flash
-map({ "n", "x", "o" }, "s", function()
-  require("flash").jump()
-end, { desc = "Flash" })
-map({ "n", "x", "o" }, "S", function()
-  require("flash").treesitter()
-end, { desc = "Flash Treesitter" })
+map({ "n", "x", "o" }, "<c-space>", function()
+  require("flash").treesitter({
+    actions = {
+      ["<c-space>"] = "next",
+      ["<BS>"] = "prev",
+    },
+  })
+end, { desc = "Flash Treesitter incremental selection" })
 map("c", "<c-s>", function()
   require("flash").toggle()
 end, { desc = "Toggle Flash search" })

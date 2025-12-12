@@ -45,15 +45,6 @@ return {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = false,
-            node_incremental = "<C-Up>",
-            scope_incremental = false,
-            node_decremental = "<C-Down>",
-          },
-        },
         indent = {
           enable = true,
         },
