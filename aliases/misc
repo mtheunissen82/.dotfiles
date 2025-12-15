@@ -17,11 +17,14 @@ alias bmu='bookmark_unset_cwd' # bookmark unset
 alias lrc='source ~/.bashrc' # load rc
 alias erc='vim ~/.bashrc; source ~/.bashrc' # edit rc
 
+# Eza
+alias ls="eza"
+alias ll='eza --long --git --icons'
+alias lt='eza --tree --level=2 --icons'
+
 # Various
 alias h='history'
 alias j='jobs -l'
-alias ll='ls -alh --color=auto'
-alias ls='ls --color=auto'
 alias mkdir='mkdir -p'
 alias cl='clear'
 alias clipkey='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
