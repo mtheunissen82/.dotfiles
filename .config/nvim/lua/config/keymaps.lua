@@ -67,6 +67,9 @@ end, {
   desc = "Organize Imports",
 })
 
+-- Open Github PR view
+map("n", "<leader>ghprv", "<cmd>!gh pr view --web<cr>", { desc = "Open GitHub PR in browser" })
+
 -- Plugin: Comment
 map("n", "<C-/>", "gcc", { remap = true })
 map("v", "<C-/>", "gc", { remap = true })
