@@ -32,9 +32,6 @@
     bd = "!/usr/bin/env bash -i -c 'git_branch_delete_fzf \"$@\"' --"
 
     ; Diff and merge
-    d = "!f() { git diff --patch-with-stat --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"
-    ds = diff --stat
-    dc = "!f() { git diff --cached --color $1 | diff-so-fancy | less --tabs=4 -RFX; }; f"
     dt = difftool
     mt = mergetool
 
@@ -97,9 +94,6 @@
     autocorrect = 50
 [interactive]
     diffFilter = delta --color-only
-[delta]
-    navigate = true
-    dark = true
 [fetch]
 	prune = true
 [merge]
@@ -115,6 +109,9 @@
     rebase = false
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
+[delta]
+    navigate = true
+    dark = true
 [include]
     path = ~/.gitconfig.local
     path = ~/.local/share/nvim/lazy/tokyonight/extras/delta/tokyonight_moon.gitconfig

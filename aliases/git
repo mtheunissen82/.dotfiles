@@ -22,16 +22,16 @@ alias gcf='git_checkout_file_fzf'
 alias gbd='git_branch_delete_fzf'
 
 function gsh() {
-    git show --patch-with-stat "$@" | delta --diff-so-fancy
+    git show --patch-with-stat "$@"
 }
 
 # diff & merge
 function gd() {
-    git diff --patch-with-stat "$@" | delta --diff-so-fancy
+    git diff --patch-with-stat "$@"
 }
 
 alias gds='git diff --stat'
-alias gdc="git diff --cached | delta --diff-so-fancy"
+alias gdc='git diff --cached'
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
