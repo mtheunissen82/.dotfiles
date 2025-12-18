@@ -109,7 +109,7 @@ git_checkout_file_fzf() {
 
     git_dir=$(git rev-parse --show-toplevel)
     checkout_files=$(git diff --name-only --diff-filter=AM | xargs printf "$git_dir/%s\n")
-    checkout_selection=$(echo -n "$checkout_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
+    checkout_selection=$(echo -n "$checkout_files" | fzf --tmux 80%,80% --style full --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $checkout_selection ]]; then
         printf "%s" "$checkout_selection" | xargs git checkout
@@ -123,7 +123,7 @@ git_add_file_fzf() {
     add_files=$(git ls-files --modified --others --exclude-standard --full-name | xargs printf "$git_dir/%s\n")
     add_directories=$(printf "%s" "$add_files" | xargs -n1 dirname | sort -u)
     add_files_and_directories=$(printf "%s\n%s" "$add_files" "$add_directories")
-    add_selection=$(echo -n "$add_files_and_directories" | sort | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
+    add_selection=$(echo -n "$add_files_and_directories" | sort | fzf --tmux 80%,80% --style full --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $add_selection ]]; then
         printf "%s" "$add_selection" | xargs git add
