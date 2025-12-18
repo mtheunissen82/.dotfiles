@@ -31,25 +31,15 @@ _aws_list_sso_sessions() {
     grep -oE '^\[sso-session [^]]+\]' ~/.aws/config | sed -E 's/^\[sso-session (.+)\]$/\1/'
 }
 
-_aws_profiles_complete_zsh() {
-    local profiles=()
-    while IFS= read -r line; do
-        profiles+=("$line")
-    done < <(_aws_list_profiles)
-
-    _describe 'aws profiles' profiles
-}
-
-_aws_sso_sessions_complete_zsh() {
-    local sessions=()
-    while IFS= read -r line; do
-        sessions+=("$line")
-    done < <(_aws_list_sso_sessions)
-
-    _describe 'aws sso-sessions' sessions
-}
-
 _aws_is_profile_logged_in() {
     local profile="$1"
     aws sts get-caller-identity --profile "$profile" &>/dev/null
+}
+
+_fzf_complete_aws_sso_login() {
+    _fzf_complete --reverse --prompt="aws sso-session> " -- "$@" <(_aws_list_sso_sessions)
+}
+
+_fzf_complete_aws_sso_to_env() {
+    _fzf_complete --reverse --prompt="aws profile> " -- "$@" <(_aws_list_profiles)
 }
