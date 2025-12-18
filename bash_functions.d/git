@@ -6,7 +6,7 @@ git_branch_checkout_fzf() {
     local branches branch
 
     branches=$(git branch -avv | grep -v HEAD)
-    branch=$(echo "$branches" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$branches") )) )
+    branch=$(echo "$branches" | fzf-tmux --no-multi -d $((2 + $(wc -l <<<"$branches"))))
 
     if [[ $branch ]]; then
         git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
@@ -17,7 +17,7 @@ git_tag_checkout_fzf() {
     local branches branch
 
     branches=$(git branch -avv | grep -v HEAD)
-    branch=$(echo "$branches" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$branches") )) )
+    branch=$(echo "$branches" | fzf-tmux --no-multi -d $((2 + $(wc -l <<<"$branches"))))
 
     if [[ $branch ]]; then
         git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
@@ -29,9 +29,12 @@ git_checkout_fzf() {
 
     branches=$(git branch -avv | grep -v HEAD)
     tags=$(git tag)
-    tags_and_branches_merged=$(echo "$branches"; echo "$tags")
+    tags_and_branches_merged=$(
+        echo "$branches"
+        echo "$tags"
+    )
 
-    checkout_target=$(echo "$tags_and_branches_merged" | fzf-tmux --no-multi -d $(( 2 + $(wc -l <<< "$tags_and_branches_merged") )) )
+    checkout_target=$(echo "$tags_and_branches_merged" | fzf-tmux --no-multi -d $((2 + $(wc -l <<<"$tags_and_branches_merged"))))
 
     if [[ $checkout_target ]]; then
         git checkout "$(echo "$checkout_target" | awk '{print $1}' | sed "s/.* //")"
@@ -94,33 +97,36 @@ git_reset_file_fzf() {
     local reset_files reset_selection
 
     reset_files=$(git diff --cached --name-only)
-    reset_selection=$(echo -n "$reset_files" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$reset_files") )))
+    reset_selection=$(echo -n "$reset_files" | fzf-tmux --multi -d $((2 + $(wc -l <<<"$reset_files"))))
 
     if [[ $reset_selection ]]; then
-        git reset HEAD -- $reset_selection
+        git reset HEAD -- "$reset_selection"
     fi
 }
 
 git_checkout_file_fzf() {
-    local checkout_files checkout_selection
+    local git_dir checkout_files checkout_selection
 
-    checkout_files=$(git status -s | grep -E '^(A|\s?M)' | awk '{print $2}')
+    git_dir=$(git rev-parse --show-toplevel)
+    checkout_files=$(git diff --name-only --diff-filter=AM | xargs printf "$git_dir/%s\n")
     checkout_selection=$(echo -n "$checkout_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $checkout_selection ]]; then
-        git checkout -- $checkout_selection
+        printf "%s" "$checkout_selection" | xargs git checkout
     fi
 }
 
 git_add_file_fzf() {
-    local add_files add_selection
-    local git_root_path=$(git rev-parse --show-toplevel)
+    local git_dir add_files add_directories add_files_and_directories add_selection
 
-    add_files=$(git ls-files -om --exclude-standard --full-name -- "$git_root_path")
-    add_selection=$(echo -n "$add_files" | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
+    git_dir=$(git rev-parse --show-toplevel)
+    add_files=$(git ls-files --modified --others --exclude-standard --full-name | xargs printf "$git_dir/%s\n")
+    add_directories=$(printf "%s" "$add_files" | xargs -n1 dirname | sort -u)
+    add_files_and_directories=$(printf "%s\n%s" "$add_files" "$add_directories")
+    add_selection=$(echo -n "$add_files_and_directories" | sort | fzf-tmux --multi --ansi --preview 'git diff --color {} | delta')
 
     if [[ $add_selection ]]; then
-        git add -- $add_selection
+        printf "%s" "$add_selection" | xargs git add
     fi
 }
 
@@ -128,30 +134,29 @@ git_branch_delete_fzf() {
     local branches branch_selection
 
     branches=$(git branch --list | grep -v '^\*' | awk '{print $1}')
-    branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $(( 2 + $(wc -l <<< "$branches") )))
+    branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $((2 + $(wc -l <<<"$branches"))))
 
     if [[ $branch_selection ]]; then
-        git branch -d $branch_selection
+        git branch -d "$branch_selection"
     fi
 }
 
 git_log_file_fzf() {
-    local first_arg="$1"
-    local file_selection ls_files_selection
-    local commit_selection
-    local git_root_path=$(git rev-parse --show-toplevel)
+    local git_dir file_selection ls_files_selection commit_selection
+
+    git_dir=$(git rev-parse --show-toplevel)
 
     # If no argument is passed present all files in the repository
-    if [[ -z "$first_arg" ]]; then
-        ls_files_selection=$(git ls-files --full-name -- "$git_root_path" | fzf-tmux)
-        file_selection="${git_root_path}/${ls_files_selection}"
+    if [[ -z $1 ]]; then
+        ls_files_selection=$(git ls-files --full-name -- "$git_dir" | fzf-tmux)
+        file_selection="${git_dir}/${ls_files_selection}"
     # If a "." argument is passed present all files below the current directory
-    elif [[ "$first_arg" = "." ]]; then
+    elif [[ $1 = "." ]]; then
         ls_files_selection=$(git ls-files --full-name -- "$(git_get_invocation_dir)" | fzf-tmux)
-        file_selection="${git_root_path}/${ls_files_selection}"
+        file_selection="${git_dir}/${ls_files_selection}"
     # Argument must be a file
     else
-        file_selection="$(git_get_invocation_dir)/$first_arg"
+        file_selection="$(git_get_invocation_dir)/$1"
     fi
 
     if [[ ! -f $file_selection ]]; then
@@ -167,7 +172,8 @@ git_log_file_fzf() {
 }
 
 git_get_invocation_dir() {
-    local git_root_path=$(git rev-parse --show-toplevel)
+    local git_dir
+    git_dir=$(git rev-parse --show-toplevel)
 
     if [[ $? -ne 0 ]]; then
         echo "This is not a git directory" 2>&1
@@ -175,7 +181,7 @@ git_get_invocation_dir() {
     fi
 
     if [[ -n "$GIT_PREFIX" ]]; then
-        echo "$git_root_path/$GIT_PREFIX"
+        echo "$git_dir/$GIT_PREFIX"
     else
         echo "$PWD"
     fi
