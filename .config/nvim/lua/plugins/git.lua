@@ -25,7 +25,7 @@ return {
         virt_text_priority = 100,
         use_focus = true,
       },
-      current_line_blame_formatter = "<author>, <author_time:%R> - <summary> (<abbrev_sha>)",
+      current_line_blame_formatter = "<author>, <author_time:%d-%m-%Y> - <summary> (<abbrev_sha>)",
     },
   },
 }
