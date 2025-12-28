@@ -12,6 +12,7 @@ alias -- -="cd -"
 alias bm='bookmark_cd_fzf' # list bookmarks
 alias bms='bookmark_set_cwd' # bookmark set
 alias bmu='bookmark_unset_cwd' # bookmark unset
+alias bmo='bookmark_open' # open bookmark with nvim
 
 # Bash
 alias lrc='source ~/.bashrc' # load rc
