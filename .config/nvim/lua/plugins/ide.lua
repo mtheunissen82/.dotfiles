@@ -205,7 +205,6 @@ return {
       },
     },
   },
-  { "akinsho/toggleterm.nvim", version = "*", opts = {} },
   {
     "NickvanDyke/opencode.nvim",
     dependencies = {
