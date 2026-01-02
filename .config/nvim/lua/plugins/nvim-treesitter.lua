@@ -76,6 +76,15 @@ return {
   },
   { "nvim-treesitter/nvim-treesitter-context", opts = {} },
   {
+    "chrisgrieser/nvim-various-textobjs",
+    event = "VeryLazy",
+    opts = {
+      keymaps = {
+        useDefaults = true,
+      },
+    },
+  },
+  {
     "windwp/nvim-ts-autotag",
     opts = {},
   },
