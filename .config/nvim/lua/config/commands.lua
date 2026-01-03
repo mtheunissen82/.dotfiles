@@ -69,15 +69,6 @@ vim.api.nvim_create_autocmd("CursorMovedI", {
   end,
 })
 
--- When opening terminal, enter interactive mode
-vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  desc = "Enter insert mode when opening a terminal",
-  callback = function()
-    vim.cmd("startinsert")
-  end,
-})
-
 -- When pressing enter on a commented line, do not automatically continue the comment on the next line
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("no_auto_comment", {}),
@@ -85,3 +76,40 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
 })
+
+-- Command for opening a terminal window
+vim.api.nvim_create_user_command("T", function()
+  vim.cmd(":vsp term://zsh")
+  vim.cmd("startinsert")
+
+  vim.bo.bufhidden = "hide"
+  vim.bo.swapfile = false
+
+  vim.api.nvim_buf_set_keymap(0, "t", "<esc>", "<c-\\><c-n>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":q!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { noremap = true, silent = true })
+end, { desc = "Open a vertical terminal split" })
+
+-- Command for running an arbitrary shell command in a new buffer
+vim.api.nvim_create_user_command("R", function(opts)
+  local current = vim.fn.expand("%:p")
+  local alt = vim.fn.expand("#:p")
+  local cmd = opts.args:gsub("%%:p", current):gsub("%%", current):gsub("#", alt)
+
+  vim.cmd("new")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "hide"
+  vim.bo.swapfile = false
+
+  vim.fn.jobstart(cmd, {
+    term = true,
+    on_stdout = function()
+      vim.schedule(function()
+        vim.cmd("normal! G")
+      end)
+    end,
+  })
+
+  vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":q!<cr>", { noremap = true, silent = true })
+end, { nargs = "+" })
