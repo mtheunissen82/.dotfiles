@@ -71,8 +71,8 @@ end, {
 map("n", "<leader>ghprv", "<cmd>!gh pr view --web<cr>", { desc = "Open GitHub PR in browser" })
 
 -- Plugin: Comment
-map("n", "<C-/>", "gcc", { remap = true })
-map("v", "<C-/>", "gc", { remap = true })
+map("n", "<leader>cc", "gcc", { remap = true })
+map("v", "<leader>cc", "gc", { remap = true })
 
 -- Plugin: telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files path_display={'shorten'}<cr>", { desc = "Telescope find files" })
