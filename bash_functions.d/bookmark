@@ -57,7 +57,7 @@ bookmark_open() {
     bookmark=$(echo -n "$bookmarks" | fzf --tmux 80% --query="$search")
 
     if [[ -n "$bookmark" ]]; then
-        nvim "$bookmark"
+        cd "$bookmark" && nvim
     fi
 }
 
