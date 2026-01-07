@@ -1,0 +1,5 @@
+com/example/person/Person.class
+com/example/person/PersonMapper.class
+com/example/App.class
+com/example/person/PersonMapperImpl.class
+com/example/person/Animal.class
