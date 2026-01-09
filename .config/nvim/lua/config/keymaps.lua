@@ -103,7 +103,7 @@ end, { desc = "Open LazyGit" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git blame file" })
 map("n", "<leader>ghp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git hunk preview" })
 map("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Git hunk reset" })
-map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", { desc = "Git diffthis" })
+map("n", "<leader>gd", "<cmd>DiffviewOpen -uno<cr>", { desc = "Git diff working tree" })
 
 -- Plugin: flash
 map({ "n", "x", "o" }, "<c-space>", function()
