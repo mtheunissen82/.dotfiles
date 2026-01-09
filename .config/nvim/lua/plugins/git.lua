@@ -28,4 +28,5 @@ return {
       current_line_blame_formatter = "<author>, <author_time:%d-%m-%Y> - <summary> (<abbrev_sha>)",
     },
   },
+  { "sindrets/diffview.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }, opts = {} },
 }
