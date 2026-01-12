@@ -51,9 +51,7 @@ map("n", "<leader>grp", "<cmd>:terminal git restore -p %<cr>", { desc = "Git res
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy plugin manager" })
 
 -- Edit nvim config in a new tab
-map("n", "<leader>v", function()
-  vim.cmd("tabnew " .. vim.fn.stdpath("config"))
-end, { desc = "Edit nvim config in new tab" })
+map("n", "<leader>v", function() end, { desc = "Edit nvim config in new tab" })
 
 -- Organize imports
 map("n", "<leader>oi", function()
@@ -103,7 +101,10 @@ end, { desc = "Open LazyGit" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git blame file" })
 map("n", "<leader>ghp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "Git hunk preview" })
 map("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Git hunk reset" })
-map("n", "<leader>gd", "<cmd>DiffviewOpen -uno<cr>", { desc = "Git diff working tree" })
+
+-- Plugin: CodeDiff
+map("n", "<leader>df", "<cmd>CodeDiff file HEAD<cr>", { desc = "Diff current buffer" })
+map("n", "<leader>dp", "<cmd>CodeDiff<cr>", { desc = "Diff project" })
 
 -- Plugin: flash
 map({ "n", "x", "o" }, "<c-space>", function()
