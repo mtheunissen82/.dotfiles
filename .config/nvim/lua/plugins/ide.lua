@@ -166,6 +166,7 @@ return {
       })
       vim.lsp.enable("lua_ls") -- Lua
       vim.lsp.enable("bashls") -- Bash
+      vim.lsp.enable("gh_actions_ls") -- GitHub Actions
     end,
   },
   {
