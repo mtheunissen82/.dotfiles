@@ -32,5 +32,12 @@ return {
     "esmuellert/codediff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
+    config = function()
+      require("codediff").setup({
+        explorer = {
+          view_mode = "tree",
+        },
+      })
+    end,
   },
 }
