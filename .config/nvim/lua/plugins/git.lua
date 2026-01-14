@@ -40,4 +40,5 @@ return {
       })
     end,
   },
+  { "k2589/getgithublink.nvim", opts = {} },
 }
