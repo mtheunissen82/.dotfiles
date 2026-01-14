@@ -32,6 +32,7 @@ return {
         html = { "prettierd" },
         java = { "google-java-format" },
         javascript = { "prettierd" },
+        json = { "fixjson" },
         lua = { "stylua" },
         sh = { "shfmt" },
         typescript = { "prettierd" },
