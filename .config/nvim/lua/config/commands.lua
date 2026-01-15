@@ -113,3 +113,21 @@ vim.api.nvim_create_user_command("R", function(opts)
   vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { noremap = true, silent = true })
   vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":q!<cr>", { noremap = true, silent = true })
 end, { nargs = "+" })
+
+-- conform.nvim: Commmand for enabling/disabling formatting
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+  if args.bang then
+    vim.b.disable_autoformat = true
+  else
+    vim.g.disable_autoformat = true
+  end
+end, {
+  desc = "Disable autoformat-on-save",
+  bang = true,
+})
+vim.api.nvim_create_user_command("FormatEnable", function()
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
+end, {
+  desc = "Re-enable autoformat-on-save",
+})
