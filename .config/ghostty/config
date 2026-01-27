@@ -1,0 +1,16 @@
+theme = TokyoNight Moon
+
+font-size = 16
+font-thicken = true
+
+font-family = "FiraCode Nerd Font Mono"
+font-family-bold = "FiraCode Nerd Font Mono"
+font-family-italic = "Maple Mono NF"
+font-family-bold-italic = "Maple Mono NF"
+
+font-synthetic-style = false
+
+window-padding-x = 10
+window-padding-y = 10
+
+selection-clear-on-copy = true
