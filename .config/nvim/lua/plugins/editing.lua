@@ -51,4 +51,22 @@ return {
     "smjonas/inc-rename.nvim",
     opts = {},
   },
+  {
+    "allaman/emoji.nvim",
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      -- needed for blink.cmp integration
+      enable_cmp_integration = true,
+    },
+    config = function(_, opts)
+      require("emoji").setup(opts)
+
+      -- telescope integration
+      require("telescope").load_extension("emoji")
+    end,
+  },
 }

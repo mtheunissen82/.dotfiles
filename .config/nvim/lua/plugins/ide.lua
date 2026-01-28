@@ -23,7 +23,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "rafamadriz/friendly-snippets", "allaman/emoji.nvim", "saghen/blink.compat" },
     version = "1.*",
     opts = {
       keymap = { preset = "enter" },
@@ -36,7 +36,7 @@ return {
         },
       },
       sources = {
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
         -- Lazydev autocompletion
         providers = {
           lazydev = {
@@ -44,6 +44,18 @@ return {
             module = "lazydev.integrations.blink",
             -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
+          },
+          emoji = {
+            name = "emoji",
+            module = "blink.compat.source",
+            -- overwrite kind of suggestion
+            transform_items = function(_, items)
+              local kind = require("blink.cmp.types").CompletionItemKind.Text
+              for i = 1, #items do
+                items[i].kind = kind
+              end
+              return items
+            end,
           },
         },
       },
