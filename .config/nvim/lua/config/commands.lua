@@ -96,7 +96,11 @@ vim.api.nvim_create_user_command("R", function(opts)
   local alt = vim.fn.expand("#:p")
   local cmd = opts.args:gsub("%%:p", current):gsub("%%", current):gsub("#", alt)
 
-  vim.cmd("new")
+  local bufnr = vim.api.nvim_create_buf(true, false)
+  vim.cmd("vsplit")
+  vim.api.nvim_win_set_buf(0, bufnr)
+  local winnr = vim.fn.bufwinid(bufnr)
+
   vim.bo.buftype = "nofile"
   vim.bo.bufhidden = "hide"
   vim.bo.swapfile = false
@@ -105,7 +109,9 @@ vim.api.nvim_create_user_command("R", function(opts)
     term = true,
     on_stdout = function()
       vim.schedule(function()
-        vim.cmd("normal! G")
+        vim.api.nvim_win_call(winnr, function()
+          vim.cmd("normal! G")
+        end)
       end)
     end,
   })
