@@ -86,8 +86,8 @@ vim.api.nvim_create_user_command("T", function()
   vim.bo.swapfile = false
 
   vim.api.nvim_buf_set_keymap(0, "t", "<esc>", "<c-\\><c-n>", { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":q!<cr>", { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":bd!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd!<cr>", { noremap = true, silent = true })
 end, { desc = "Open a vertical terminal split" })
 
 -- Command for running an arbitrary shell command in a new buffer
@@ -110,8 +110,8 @@ vim.api.nvim_create_user_command("R", function(opts)
     end,
   })
 
-  vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":q!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd!<cr>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "<esc>", ":bd!<cr>", { noremap = true, silent = true })
 end, { nargs = "+" })
 
 -- conform.nvim: Commmand for enabling/disabling formatting
