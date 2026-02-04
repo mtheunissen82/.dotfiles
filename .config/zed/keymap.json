@@ -6,12 +6,25 @@
       ", b": "tab_switcher::Toggle",
       ", f f": "file_finder::Toggle",
       ", f g": "workspace::NewSearch",
+      ", z": "pane::CloseActiveItem",
+      // Navigating from editor to project panel
       "ctrl-h": "workspace::ActivatePaneLeft",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Improve word navigation for camelCase or snake_case
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd",
     },
   },
   {
     "context": "ProjectPanel",
     "bindings": {
+      // Navigating from project panel to editor
       ", e": "workspace::ToggleLeftDock",
       "ctrl-l": "workspace::ActivatePaneRight",
     },
@@ -25,6 +38,7 @@
   {
     "context": "TabSwitcher",
     "bindings": {
+      // QoL binding for navigating buffers
       "j": ["workspace::SendKeystrokes", "ctrl-n"],
       "k": ["workspace::SendKeystrokes", "ctrl-p"],
       "d": "tab_switcher::CloseSelectedItem",
@@ -32,6 +46,7 @@
     },
   },
   {
+    // Yes we still love Lazygit
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       ", g g": [
