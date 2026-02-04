@@ -1,36 +1,36 @@
 promptToReturnFromSubprocess: false
 quitOnTopLevelReturn: true
 git:
-  pagers:
-    - pager: "delta --dark --paging=never"
+    pagers:
+        - pager: "delta --dark --paging=never"
 gui:
-  nerdFontsVersion: "3"
-  # tokyonight moon theme (copy pasta from folke/tokyonight.nvim/extras/lazygit)
-  theme:
-    activeBorderColor:
-      - "#ff966c"
-      - "bold"
-    inactiveBorderColor:
-      - "#589ed7"
-    searchingActiveBorderColor:
-      - "#ff966c"
-      - "bold"
-    optionsTextColor:
-      - "#82aaff"
-    selectedLineBgColor:
-      - "#2d3f76"
-    cherryPickedCommitFgColor:
-      - "#82aaff"
-    cherryPickedCommitBgColor:
-      - "#c099ff"
-    markedBaseCommitFgColor:
-      - "#82aaff"
-    markedBaseCommitBgColor:
-      - "#ffc777"
-    unstagedChangesColor:
-      - "#c53b53"
-    defaultFgColor:
-      - "#c8d3f5"
-editAtLine: "zed {{filename}}:{{line}}"
+    nerdFontsVersion: "3"
+    # tokyonight moon theme (copy pasta from folke/tokyonight.nvim/extras/lazygit)
+    theme:
+        activeBorderColor:
+            - "#ff966c"
+            - "bold"
+        inactiveBorderColor:
+            - "#589ed7"
+        searchingActiveBorderColor:
+            - "#ff966c"
+            - "bold"
+        optionsTextColor:
+            - "#82aaff"
+        selectedLineBgColor:
+            - "#2d3f76"
+        cherryPickedCommitFgColor:
+            - "#82aaff"
+        cherryPickedCommitBgColor:
+            - "#c099ff"
+        markedBaseCommitFgColor:
+            - "#82aaff"
+        markedBaseCommitBgColor:
+            - "#ffc777"
+        unstagedChangesColor:
+            - "#c53b53"
+        defaultFgColor:
+            - "#c8d3f5"
 os:
-  edit: "zed {{filename}}"
+    edit: "zed {{filename}}"
+    editAtLine: "zed {{filename}}:{{line}}"
