@@ -1,0 +1,5 @@
+promptToReturnFromSubprocess: false
+quitOnTopLevelReturn: true
+os:
+  edit: "zed {{filename}}"
+  editAtLine: "zed {{filename}}:{{line}}"
