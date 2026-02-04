@@ -25,6 +25,7 @@ alias lt='eza --tree --level=2 --icons'
 
 # Various
 alias v='nvim'
+alias z='zed'
 alias h='history'
 alias j='jobs -l'
 alias mkdir='mkdir -p'
