@@ -1,0 +1,43 @@
+[
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      ", e": "vim::ToggleProjectPanelFocus",
+      ", b": "tab_switcher::Toggle",
+      ", f f": "file_finder::Toggle",
+      ", f g": "workspace::NewSearch",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+    },
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      ", e": "workspace::ToggleLeftDock",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      ", c c": "vim::ToggleComments",
+    },
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "j": ["workspace::SendKeystrokes", "ctrl-n"],
+      "k": ["workspace::SendKeystrokes", "ctrl-p"],
+      "d": "tab_switcher::CloseSelectedItem",
+      "q": ["workspace::SendKeystrokes", "escape"],
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      ", g g": [
+        "task::Spawn",
+        { "task_name": "Lazygit", "reveal_target": "center" },
+      ],
+    },
+  },
+]
