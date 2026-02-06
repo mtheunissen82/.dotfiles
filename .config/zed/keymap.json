@@ -13,6 +13,18 @@
       ", g h p r v": ["task::Spawn", { "task_name": "GitHub view PR" }],
     },
   },
+  // Disable global (e.g. Workspace) keymaps when editing
+  {
+    "context": "Editor && vim_mode != normal",
+    "bindings": {
+      ", b": null,
+      ", e": null,
+      ", f f": null,
+      ", f g": null,
+      ", g g": null,
+      ", g h p r v": null,
+    },
+  },
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
