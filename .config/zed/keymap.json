@@ -11,6 +11,7 @@
         { "task_name": "Lazygit", "reveal_target": "center" },
       ],
       ", g h p r v": ["task::Spawn", { "task_name": "GitHub view PR" }],
+      ", g h r v": ["task::Spawn", { "task_name": "GitHub view repo" }],
     },
   },
   // Disable global (e.g. Workspace) keymaps when editing
@@ -23,6 +24,7 @@
       ", f g": null,
       ", g g": null,
       ", g h p r v": null,
+      ", g h r v": null,
     },
   },
   {

@@ -22,4 +22,14 @@
       "program": "sh",
     },
   },
+  {
+    "label": "GitHub view repo",
+    "command": "gh repo view --web",
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "shell": {
+      "program": "sh",
+    },
+  },
 ]
