@@ -1,16 +1,21 @@
 [
   {
-    "context": "vim_mode == normal",
+    "context": "Editor && vim_mode == normal",
     "bindings": {
-      ", e": "vim::ToggleProjectPanelFocus",
-      ", b": "tab_switcher::Toggle",
-      ", f f": "file_finder::Toggle",
-      ", f g": "workspace::NewSearch",
       ", z": "pane::CloseActiveItem",
       // Navigating from editor to project panel
       "ctrl-h": "workspace::ActivatePaneLeft",
     },
   },
+  {
+    "context": "Workspace",
+      "bindings": {
+        ", b": "tab_switcher::Toggle",
+        ", e": "vim::ToggleProjectPanelFocus",
+        ", f f": "file_finder::Toggle",
+        ", f g": "workspace::NewSearch",
+      },
+    },
   {
     "context": "VimControl && !menu",
     "bindings": {
