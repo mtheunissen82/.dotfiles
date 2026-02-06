@@ -12,4 +12,14 @@
       "program": "sh",
     },
   },
+  {
+    "label": "GitHub view PR",
+    "command": "gh pr view --web",
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "shell": {
+      "program": "sh",
+    },
+  },
 ]

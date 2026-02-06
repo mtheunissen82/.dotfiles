@@ -51,12 +51,15 @@
     },
   },
   {
-    // Yes we still love Lazygit
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       ", g g": [
         "task::Spawn",
         { "task_name": "Lazygit", "reveal_target": "center" },
+      ],
+      ", g h p r v": [
+        "task::Spawn",
+        { "task_name": "GitHub view PR" },
       ],
     },
   },
