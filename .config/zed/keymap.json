@@ -1,21 +1,27 @@
 [
   {
+    "context": "Workspace",
+    "bindings": {
+      ", b": "tab_switcher::Toggle",
+      ", e": "vim::ToggleProjectPanelFocus",
+      ", f f": "file_finder::Toggle",
+      ", f g": "workspace::NewSearch",
+      ", g g": [
+        "task::Spawn",
+        { "task_name": "Lazygit", "reveal_target": "center" },
+      ],
+      ", g h p r v": ["task::Spawn", { "task_name": "GitHub view PR" }],
+    },
+  },
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       ", z": "pane::CloseActiveItem",
       // Navigating from editor to project panel
       "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
     },
   },
-  {
-    "context": "Workspace",
-      "bindings": {
-        ", b": "tab_switcher::Toggle",
-        ", e": "vim::ToggleProjectPanelFocus",
-        ", f f": "file_finder::Toggle",
-        ", f g": "workspace::NewSearch",
-      },
-    },
   {
     "context": "VimControl && !menu",
     "bindings": {
@@ -48,19 +54,6 @@
       "k": ["workspace::SendKeystrokes", "ctrl-p"],
       "d": "tab_switcher::CloseSelectedItem",
       "q": ["workspace::SendKeystrokes", "escape"],
-    },
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-    "bindings": {
-      ", g g": [
-        "task::Spawn",
-        { "task_name": "Lazygit", "reveal_target": "center" },
-      ],
-      ", g h p r v": [
-        "task::Spawn",
-        { "task_name": "GitHub view PR" },
-      ],
     },
   },
 ]
