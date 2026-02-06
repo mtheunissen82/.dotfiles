@@ -1,9 +1,9 @@
 {
   "vim_mode": true,
   "ui_font_size": 16,
-  "ui_font_family": "FiraCode Nerd Font Mono",
-  "buffer_font_size": 15,
-  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "ui_font_family": "Maple Mono NF",
+  "buffer_font_size": 16,
+  "buffer_font_family": "Maple Mono NF",
   "vertical_scroll_margin": 9999,
   "use_smartcase_search": true,
   "extend_comment_on_newline": false,
@@ -11,6 +11,24 @@
     "mode": "dark",
     "light": "Tokyo Night Moon",
     "dark": "Tokyo Night Moon",
+  },
+  "theme_overrides": {
+    "Tokyo Night Moon": {
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+        "constant": {
+          "font_style": "italic",
+        },
+        "keyword": {
+          "font_style": "italic",
+        },
+      },
+    },
   },
   "terminal": {
     "font_size": 16.0,
