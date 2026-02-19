@@ -14,6 +14,7 @@
   "buffer_font_family": "Maple Mono NF",
   "vertical_scroll_margin": 9999,
   "use_smartcase_search": true,
+  "colorize_brackets": true,
   "extend_comment_on_newline": false,
   "format_on_save": "off",
   "theme": {
