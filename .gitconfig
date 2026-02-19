@@ -3,7 +3,7 @@
     autoSetupRemote = true
 [core]
     eol = lf
-    editor = vim
+    editor = zed --wait
     fileMode = false
     autocrlf = input
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
