@@ -1,6 +1,6 @@
 {
   "file_finder": {
-    "modal_max_width": "medium",
+    "modal_max_width": "large",
   },
   "icon_theme": {
     "mode": "system",
