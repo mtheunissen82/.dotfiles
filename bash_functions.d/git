@@ -2,32 +2,10 @@
 
 GIT_TEMPLATE_DIR=~/.git_templates
 
-git_branch_checkout_fzf() {
-    local branches branch
-
-    branches=$(git branch -avv | grep -v HEAD)
-    branch=$(echo "$branches" | fzf-tmux --no-multi -d $((2 + $(wc -l <<<"$branches"))))
-
-    if [[ $branch ]]; then
-        git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
-    fi
-}
-
-git_tag_checkout_fzf() {
-    local branches branch
-
-    branches=$(git branch -avv | grep -v HEAD)
-    branch=$(echo "$branches" | fzf-tmux --no-multi -d $((2 + $(wc -l <<<"$branches"))))
-
-    if [[ $branch ]]; then
-        git checkout "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
-    fi
-}
-
 git_checkout_fzf() {
     local branches tags tags_and_branches_merged checkout_target
 
-    branches=$(git branch -avv | grep -v HEAD)
+    branches=$(git branch -av | grep -v remotes/)
     tags=$(git tag)
     tags_and_branches_merged=$(
         echo "$branches"
