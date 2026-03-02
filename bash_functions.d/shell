@@ -24,3 +24,7 @@ fw() {
     local term="$@"
     file $(which "$term")
 }
+
+cdbin() {
+    cd $(dirname $(which "$@"))
+}
