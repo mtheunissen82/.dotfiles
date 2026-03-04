@@ -25,24 +25,25 @@
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
-    "dark": "Catppuccin Macchiato"
+    "dark": "Catppuccin Macchiato",
   },
   "file_finder": {
     "modal_max_width": "large",
   },
   "agent": {
+    "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6"
+      "model": "claude-sonnet-4.6",
     },
     "favorite_models": [
       {
         "provider": "copilot_chat",
         "model": "claude-sonnet-4.6",
-        "enable_thinking": false
-      }
+        "enable_thinking": false,
+      },
     ],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "vim_mode": true,
   "ui_font_size": 16,
@@ -55,7 +56,18 @@
   "extend_comment_on_newline": false,
   "format_on_save": "off",
   "terminal": {
+    "button": false,
     "font_size": 16.0,
+  },
+  "notification_panel": {
+    "button": false,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
+  "outline_panel": {
+    "button": false,
+    "dock": "right",
   },
   "vim": {
     "use_smartcase_find": true,
@@ -83,7 +95,7 @@
       "settings": {
         "java_home": "/Users/emty/.local/share/mise/installs/java/temurin-21.0.10+7.0.LTS",
         "lombok_support": true,
-      }
-    }
-  }
+      },
+    },
+  },
 }
