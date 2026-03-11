@@ -2,5 +2,6 @@
 java = "temurin-21"
 maven = "latest"
 node = "24"
+prettier = "latest"
 terraform = "latest"
 yarn = "latest"
