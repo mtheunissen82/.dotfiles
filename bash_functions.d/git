@@ -115,7 +115,13 @@ git_branch_delete_fzf() {
     branch_selection=$(echo -n "$branches" | fzf-tmux --multi -d $((2 + $(wc -l <<<"$branches"))))
 
     if [[ $branch_selection ]]; then
-        git branch -d "$branch_selection"
+        if ! git branch -d "$branch_selection" 2>/dev/null; then
+            printf "Force delete branch '%s'? [y/N] " "$branch_selection"
+            read confirm
+            if [[ $confirm == [yY] ]]; then
+                git branch -D "$branch_selection"
+            fi
+        fi
     fi
 }
 
