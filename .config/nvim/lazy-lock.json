@@ -6,7 +6,6 @@
   "codediff.nvim": { "branch": "main", "commit": "832f1ecc5f8b15a44cf7537e31d3266d657775b1" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "copilot.vim": { "branch": "release", "commit": "a12fd5672110c8aa7e3c8419e28c96943ca179be" },
-  "emoji.nvim": { "branch": "main", "commit": "34ccd330be21d0ba5050f9c4ced3fbc80d137347" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "getgithublink.nvim": { "branch": "main", "commit": "0d971c1d71e90f35ab134684e59b3594d57c175f" },

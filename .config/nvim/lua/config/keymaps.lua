@@ -83,7 +83,7 @@ map(
   "<cmd>Telescope oldfiles path_display={'shorten'}<cr>",
   { desc = "Telescope find previously opened files" }
 )
-map("n", "<leader>fe", "<cmd>Telescope emoji<cr>", { desc = "Telescope find emoji" }) -- integration depends on emoji.nvim plugin
+map("n", "<leader>fe", "<cmd>lua Snacks.picker.icons()<cr>", { desc = "Find emoji/icons" })
 
 -- Plugin: neo-tree
 map(
