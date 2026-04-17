@@ -72,18 +72,25 @@ map("n", "<leader>ghprv", "<cmd>!gh pr view --web<cr>", { desc = "Open GitHub PR
 map("n", "<leader>cc", "gcc", { remap = true })
 map("v", "<leader>cc", "gc", { remap = true })
 
--- Plugin: telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files path_display={'shorten'}<cr>", { desc = "Telescope find files" })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Telescope live grep" })
-map("n", "<leader>b", "<cmd>Telescope buffers path_display={'shorten'}<cr>", { desc = "Telescope find buffers" })
-map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Telescope find keymaps" })
-map(
-  "n",
-  "<leader>fo",
-  "<cmd>Telescope oldfiles path_display={'shorten'}<cr>",
-  { desc = "Telescope find previously opened files" }
-)
-map("n", "<leader>fe", "<cmd>lua Snacks.picker.icons()<cr>", { desc = "Find emoji/icons" })
+-- Plugin: Snacks
+map("n", "<leader>ff", function()
+  Snacks.picker.files()
+end, { desc = "Find files" })
+map("n", "<leader>fg", function()
+  Snacks.picker.grep()
+end, { desc = "Grep files" })
+map("n", "<leader>b", function()
+  Snacks.picker.buffers()
+end, { desc = "Find buffers" })
+map("n", "<leader>fk", function()
+  Snacks.picker.keymaps()
+end, { desc = "Find keymaps" })
+map("n", "<leader>fo", function()
+  Snacks.picker.recent({ filter = { cwd = true } })
+end, { desc = "Find recent files" })
+map("n", "<leader>fe", function()
+  Snacks.picker.icons()
+end, { desc = "Find icons/emojis" })
 
 -- Plugin: neo-tree
 map(
