@@ -1,4 +1,5 @@
 {
+  // ─── Appearance ───────────────────────────────────────────────────────────────
   "theme": {
     "mode": "dark",
     "light": "Tokyo Night Moon",
@@ -7,18 +8,10 @@
   "theme_overrides": {
     "Tokyo Night Moon": {
       "syntax": {
-        "comment": {
-          "font_style": "italic",
-        },
-        "comment.doc": {
-          "font_style": "italic",
-        },
-        "constant": {
-          "font_style": "italic",
-        },
-        "keyword": {
-          "font_style": "italic",
-        },
+        "comment": { "font_style": "italic" },
+        "comment.doc": { "font_style": "italic" },
+        "constant": { "font_style": "italic" },
+        "keyword": { "font_style": "italic" },
       },
     },
   },
@@ -27,15 +20,91 @@
     "light": "Catppuccin Macchiato",
     "dark": "Catppuccin Macchiato",
   },
+  "ui_font_size": 16,
+  "ui_font_family": "Maple Mono NF",
+  "buffer_font_size": 16,
+  "buffer_font_family": "Maple Mono NF",
+  "colorize_brackets": true,
+
+  // ─── Editor ───────────────────────────────────────────────────────────────────
+  "vim_mode": true,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+  },
+  "vertical_scroll_margin": 9999,
+  "use_smartcase_search": true,
+  "extend_comment_on_newline": false,
+  "format_on_save": "off",
+  "code_lens": "on",
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "diff_view_style": "split",
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+
+  // ─── Panels & Layout ──────────────────────────────────────────────────────────
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+    "button": false,
+  },
+  "outline_panel": {
+    "button": false,
+    "dock": "right",
+  },
   "file_finder": {
     "modal_max_width": "large",
   },
-  "agent": {
-    "default_profile": "write",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
+
+  // ─── Terminal ─────────────────────────────────────────────────────────────────
+  "terminal": {
+    "button": false,
+    "font_size": 16.0,
+  },
+
+  // ─── Git ──────────────────────────────────────────────────────────────────────
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "show_commit_summary": true,
     },
+  },
+
+  // ─── AI / Agent ───────────────────────────────────────────────────────────────
+  "agent_servers": {
+    "github-copilot-cli": {
+      "favorite_config_option_values": {
+        "model": ["claude-opus-4.6", "claude-sonnet-4.6"],
+      },
+      "type": "registry",
+    },
+  },
+  "context_servers": {
+    "atlassian": {
+      "enabled": true,
+      "url": "https://mcp.atlassian.com/v1/mcp",
+    },
+    "jira": {
+      "enabled": true,
+      "url": "https://mcp.atlassian.com/v1/mcp",
+    },
+    "github": {
+      "command": "github-mcp-server-local",
+      "args": [],
+    },
+  },
+  "agent": {
+    "dock": "right",
+    "default_profile": "write",
     "favorite_models": [
       {
         "provider": "copilot_chat",
@@ -44,39 +113,55 @@
       },
     ],
     "model_parameters": [],
+    "subagent_model": {
+      "model": "claude-sonnet-4.6",
+      "provider": "copilot",
+    },
+    "tool_permissions": {
+      "tools": {
+        "mcp:github:pull_request_read": { "default": "allow" },
+        "mcp:github:search_pull_requests": { "default": "allow" },
+        "mcp:github:list_pull_requests": { "default": "allow" },
+        "mcp:mcp-server-github:pull_request_read": { "default": "allow" },
+        "mcp:mcp-server-github:list_pull_requests": { "default": "allow" },
+        "fetch": { "default": "allow" },
+        "terminal": {
+          "always_allow": [
+            { "pattern": "^cat\\b" },
+            { "pattern": "^ls\\b" },
+            { "pattern": "^head\\b" },
+            { "pattern": "^tail\\b" },
+            { "pattern": "^grep\\b" },
+            { "pattern": "^sed\\b" },
+            { "pattern": "^rm\\b" },
+            { "pattern": "^git\\b" },
+            { "pattern": "^cd\\s+packages/return\\-order(\\s|$)" },
+            { "pattern": "^cd\\s+packages/sales\\-order(\\s|$)" },
+            { "pattern": "^cd\\s+packages/common(\\s|$)" },
+            { "pattern": "^ls\\s+packages/common/dist/(\\s|$)" },
+            { "pattern": "^npm\\s+install(\\s|$)" },
+            { "pattern": "^npm\\s+run(\\s|$)" },
+            { "pattern": "^npx\\s+jest(\\s|$)" },
+            { "pattern": "^mvn\\s+test(\\s|$)" },
+            { "pattern": "^mvn\\s+install(\\s|$)" },
+            { "pattern": "^sleep\\s+180(\\s|$)" },
+          ],
+        },
+      },
+    },
   },
-  "vim_mode": true,
-  "ui_font_size": 16,
-  "ui_font_family": "Maple Mono NF",
-  "buffer_font_size": 16,
-  "buffer_font_family": "Maple Mono NF",
-  "vertical_scroll_margin": 9999,
-  "use_smartcase_search": true,
-  "colorize_brackets": true,
-  "extend_comment_on_newline": false,
-  "format_on_save": "off",
-  "terminal": {
-    "button": false,
-    "font_size": 16.0,
+
+  // ─── LSP ──────────────────────────────────────────────────────────────────────
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "/Users/emty/.local/share/mise/installs/java/temurin-21.0.10+7.0.LTS",
+        "lombok_support": true,
+      },
+    },
   },
-  "notification_panel": {
-    "button": false,
-  },
-  "collaboration_panel": {
-    "button": false,
-  },
-  "outline_panel": {
-    "button": false,
-    "dock": "right",
-  },
-  "vim": {
-    "use_smartcase_find": true,
-    "toggle_relative_line_numbers": true,
-  },
-  "telemetry": {
-    "diagnostics": true,
-    "metrics": false,
-  },
+
+  // ─── File scanning ────────────────────────────────────────────────────────────
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -90,18 +175,10 @@
     "**/node_modules",
     "**/dist",
   ],
-  "git": {
-    "inline_blame": {
-      "enabled": true,
-      "show_commit_summary": true,
-    },
-  },
-  "lsp": {
-    "jdtls": {
-      "settings": {
-        "java_home": "/Users/emty/.local/share/mise/installs/java/temurin-21.0.10+7.0.LTS",
-        "lombok_support": true,
-      },
-    },
+
+  // ─── Privacy ──────────────────────────────────────────────────────────────────
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false,
   },
 }
