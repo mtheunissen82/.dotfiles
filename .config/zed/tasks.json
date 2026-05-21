@@ -32,4 +32,14 @@
       "program": "sh",
     },
   },
+  {
+    "label": "Format spotless:apply",
+    "command": "mvn spotless:apply",
+    "hide": "on_success",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "shell": {
+      "program": "sh",
+    },
+  },
 ]
