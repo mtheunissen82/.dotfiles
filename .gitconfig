@@ -112,6 +112,7 @@
 [delta]
     navigate = true
     dark = true
+    hyperlinks = true
 [include]
     path = ~/.gitconfig.local
     path = ~/.local/share/nvim/lazy/tokyonight/extras/delta/tokyonight_moon.gitconfig
