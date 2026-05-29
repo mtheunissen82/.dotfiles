@@ -1,4 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "tokyonight"
+  "plugin": ["@datadog/opencode-plugin"],
+  "mcp": {
+    "github": {
+      "type": "local",
+      "command": ["/Users/emty/.local/bin/github-mcp-server-local"],
+      "enabled": true
+    },
+  }
 }
