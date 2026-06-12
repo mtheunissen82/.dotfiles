@@ -33,6 +33,7 @@ return {
         java = { "google-java-format" },
         javascript = { "prettierd" },
         json = { "fixjson" },
+        jsonc = { "fixjson" },
         lua = { "stylua" },
         sh = { "shfmt" },
         typescript = { "prettierd" },
