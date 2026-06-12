@@ -1,6 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@datadog/opencode-plugin"],
+  "plugin": [
+    "@datadog/opencode-plugin",
+    "@tarquinen/opencode-dcp@latest"
+  ],
   "mcp": {
     "github": {
       "type": "local",
