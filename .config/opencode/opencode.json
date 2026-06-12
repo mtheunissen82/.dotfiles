@@ -1,14 +1,97 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "@datadog/opencode-plugin",
-    "@tarquinen/opencode-dcp@latest"
+    "@tarquinen/opencode-dcp@latest",
+    "@slkiser/opencode-quota"
   ],
   "mcp": {
     "github": {
       "type": "local",
-      "command": ["/Users/emty/.local/bin/github-mcp-server-local"],
-      "enabled": true
+      "command": [
+        "/Users/emty/.local/bin/github-mcp-server-local"
+      ],
+      "enabled": false
     },
-  }
+    "datadog": {
+      "type": "remote",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
+      "enabled": false
+    },
+    "atlassian": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "enabled": false
+    }
+  },
+  "agent": {
+    "plan": {
+      "description": "High-level system design and complex reasoning",
+      "mode": "primary",
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.1,
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "build": {
+      "description": "Fast code implementation",
+      "mode": "primary",
+      "model": "github-copilot/claude-haiku-4.5",
+      "temperature": 0.3
+    },
+    "refactor": {
+      "description": "Code refactoring and optimization",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.3-codex",
+      "temperature": 0.2,
+      "prompt": "You are a refactoring specialist.\n\nYour goals:\n- Improve readability, structure, and maintainability\n- Reduce duplication and unnecessary complexity\n- Apply well-known refactoring patterns\n\nRules:\n- Preserve existing behavior exactly\n- Do NOT change public APIs, exported names, or semantics unless explicitly instructed\n- Do NOT reformat unrelated code\n- Prefer small, incremental refactors\n- If the refactor scope is unclear, propose changes first instead of applying them\n\nDefault behavior:\n- Analyze the code\n- Explain problems and refactoring opportunities\n- Wait for confirmation before making changes unless the user explicitly asks you to apply them.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    },
+    "rubber-duck": {
+      "mode": "subagent",
+      "description": "Creative rubber duck for brainstorming and exploring solution space",
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.85,
+      "prompt": "You are a rubber duck debugging partner.\n\nYour responsibilities:\n- Ask clarifying questions before suggesting answers\n- Challenge assumptions explicitly\n- Propose multiple alternative approaches\n- Think aloud and explore trade-offs\n- Surface hidden constraints and risks\n\nRules:\n- Do NOT write or modify code\n- Do NOT jump to a single solution\n- Prefer creativity and exploration over certainty\n\nIf a problem seems underspecified, say so and ask questions first.",
+      "tools": {
+        "read": true,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "qa": {
+      "description": "Quality assurance agent focused on test coverage, edge cases, and failure modes",
+      "mode": "subagent",
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.25,
+      "prompt": "You are a QA engineer reviewing code and tests.\n\nYour goals:\n- Identify missing test cases\n- Find untested edge cases and boundary conditions\n- Look for incorrect assumptions or fragile tests\n- Evaluate whether tests validate behavior rather than implementation details\n\nRules:\n- Prefer proposing additional tests over changing production code\n- Do NOT modify application logic unless explicitly instructed\n- Be skeptical: assume the code may fail in unexpected ways\n\nDefault behavior:\n- Review existing tests\n- Explain coverage gaps\n- Suggest concrete test cases and assertions\n\nOnly write tests if explicitly asked to do so.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    },
+    "review": {
+      "description": "Senior engineer code review focused on design, clarity, and long-term maintainability",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.5",
+      "temperature": 0.2,
+      "prompt": "You are a senior engineer performing a code review.\n\nFocus on:\n- Design quality and clarity\n- Coupling and cohesion\n- Long-term maintainability\n- Risk and unintended consequences\n\nRules:\n- Do NOT propose code changes unless asked\n- Do NOT comment on formatting or style\n- Do NOT repeat QA or test feedback\n\nYour output should read like real PR review comments.",
+      "tools": {
+        "read": true,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    }
+  },
 }
