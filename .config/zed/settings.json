@@ -123,9 +123,9 @@
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-opus-4.7",
-      "enable_thinking": true,
-      "effort": "max"
+      "model": "claude-sonnet-4.6",
+      "enable_thinking": false,
+      "effort": "high"
     },
     "dock": "right",
     "default_profile": "write",
