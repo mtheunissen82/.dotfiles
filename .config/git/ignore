@@ -4,4 +4,4 @@
 .tmux/plugins/*
 .tmux/resurrect
 *.swp
-**/.tokensave
+.tokensave
