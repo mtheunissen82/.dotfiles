@@ -21,6 +21,13 @@
       "type": "remote",
       "url": "https://mcp.atlassian.com/v1/mcp",
       "enabled": false
+    },
+    "tokensave": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/bin/tokensave",
+        "serve"
+      ]
     }
   },
   "agent": {
@@ -93,5 +100,5 @@
         "bash": false
       }
     }
-  },
+  }
 }

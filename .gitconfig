@@ -9,6 +9,7 @@
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
     pager = delta
+    hooksPath = /Users/emty/.config/git/hooks
 [alias]
     ; General shortcuts
     s = status --short
