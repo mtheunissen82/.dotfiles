@@ -5,7 +5,7 @@
       ", b": "tab_switcher::Toggle",
       ", e": "vim::ToggleProjectPanelFocus",
       ", f f": "file_finder::Toggle",
-      ", f g": "workspace::NewSearch",
+      ", f g": "text_finder::Toggle",
       ", g g": [
         "task::Spawn",
         { "task_name": "Lazygit", "reveal_target": "center" },
