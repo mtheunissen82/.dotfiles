@@ -1,7 +1,7 @@
 ---
 description: Read-only scout for fetching and summarizing context from external or dependency repos (including private ones) via the GitHub CLI. Use whenever a task references another repo, a shared library/dependency, or a repo the user names explicitly.
 mode: subagent
-model: anthropic/claude-haiku-4-5-20251001
+model: github-copilot/claude-sonnet-5
 temperature: 0.1
 permission:
   edit: deny

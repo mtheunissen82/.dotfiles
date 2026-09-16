@@ -1,7 +1,7 @@
 ---
 description: Reviews code for best practices and potential issues.
 mode: subagent
-model: github-copilot/claude-opus-4.8
+model: github-copilot/claude-opus-5
 temperature: 0.1
 tools:
   write: false
