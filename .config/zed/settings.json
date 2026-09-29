@@ -1,5 +1,8 @@
 {
   // ─── Appearance ───────────────────────────────────────────────────────────────
+  "cursor_animation": {
+    "enabled": true
+  },
   "theme": {
     "mode": "dark",
     "light": "Tokyo Night Moon",
