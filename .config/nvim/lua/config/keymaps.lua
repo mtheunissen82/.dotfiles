@@ -142,7 +142,7 @@ end, { expr = true })
 
 -- Plugin: opencode
 map({ "n", "x" }, "<C-a>", function()
-  require("opencode").ask("@this: ", { submit = true })
+  require("opencode").ask("@this: ")
 end, { desc = "Ask opencode" })
 map({ "n", "x" }, "<C-x>", function()
   require("opencode").select()
