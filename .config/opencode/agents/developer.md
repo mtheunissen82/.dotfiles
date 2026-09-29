@@ -1,7 +1,7 @@
 ---
 description: Writes careful and considered code.
 mode: subagent
-model: github-copilot/claude-sonnet-5
+model: github-copilot/claude-sonnet-5.5
 temperature: 0.1
 tools:
   write: true

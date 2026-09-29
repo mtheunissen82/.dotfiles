@@ -1,7 +1,7 @@
 ---
 description: Architects whole implementations.
 mode: primary
-model: github-copilot/claude-opus-5
+model: github-copilot/claude-opus-5.5
 temperature: 0.1
 tools:
   write: true
