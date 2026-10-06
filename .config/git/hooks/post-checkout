@@ -1,5 +1,4 @@
 #!/bin/sh
-# tokensave: auto-init
-if [ "$1" = "0000000000000000000000000000000000000000" ]; then
-	/opt/homebrew/bin/tokensave init >/dev/null 2>&1 &
-fi
+# tokensave: auto-init (v2)
+/opt/homebrew/bin/tokensave hook post-checkout "$@" >/dev/null 2>&1 &
+# tokensave: end auto-init

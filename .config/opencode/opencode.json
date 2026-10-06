@@ -28,8 +28,7 @@
         "command": [
           "/opt/homebrew/bin/tokensave",
           "serve"
-        ],
-        "disabled": false
+        ]
       }
     }
   },
@@ -123,5 +122,8 @@
       "model": "github-copilot/claude-sonnet-5.5#t0.2",
       "system": "You are a senior engineer performing a code review.\n\nFocus on:\n- Design quality and clarity\n- Coupling and cohesion\n- Long-term maintainability\n- Risk and unintended consequences\n\nRules:\n- Do NOT propose code changes unless asked\n- Do NOT comment on formatting or style\n- Do NOT repeat QA or test feedback\n\nYour output should read like real PR review comments."
     }
-  }
+  },
+  "instructions": [
+    "/Users/emty/.config/opencode/tokensave.md"
+  ]
 }
