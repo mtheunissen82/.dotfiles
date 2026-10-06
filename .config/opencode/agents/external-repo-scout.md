@@ -1,24 +1,50 @@
 ---
 description: Read-only scout for fetching and summarizing context from external or dependency repos (including private ones) via the GitHub CLI. Use whenever a task references another repo, a shared library/dependency, or a repo the user names explicitly.
 mode: subagent
-model: github-copilot/claude-sonnet-5.5
-temperature: 0.1
-permission:
-  edit: deny
-  webfetch: deny
-  bash:
-    "*": ask
-    "gh repo view *": allow
-    "gh search code *": allow
-    "gh search *": allow
-    "gh api *": allow
-    "gh pr view *": allow
-    "gh pr diff *": allow
-    "gh pr list *": allow
-    "gh issue view *": allow
-    "gh issue list *": allow
-    "gh release view *": allow
-    "gh workflow view *": allow
+model: github-copilot/claude-sonnet-5.5#t0.1
+permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: webfetch
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "*"
+    effect: ask
+  - action: shell
+    resource: "gh repo view *"
+    effect: allow
+  - action: shell
+    resource: "gh search code *"
+    effect: allow
+  - action: shell
+    resource: "gh search *"
+    effect: allow
+  - action: shell
+    resource: "gh api *"
+    effect: allow
+  - action: shell
+    resource: "gh pr view *"
+    effect: allow
+  - action: shell
+    resource: "gh pr diff *"
+    effect: allow
+  - action: shell
+    resource: "gh pr list *"
+    effect: allow
+  - action: shell
+    resource: "gh issue view *"
+    effect: allow
+  - action: shell
+    resource: "gh issue list *"
+    effect: allow
+  - action: shell
+    resource: "gh release view *"
+    effect: allow
+  - action: shell
+    resource: "gh workflow view *"
+    effect: allow
 ---
 
 You are a read-only scout for external repositories. Your only job is to
