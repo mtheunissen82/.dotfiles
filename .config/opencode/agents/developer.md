@@ -15,6 +15,7 @@ Operating model
 - Do not implement future tasks, “nice-to-haves”, speculative improvements, or extra abstractions (YAGNI).
 - Keep changes small, cohesive, and easy to review. Prefer the simplest correct implementation.
 - Always follow existing repository conventions (stack, patterns, naming, formatting, linting, testing style). Inspect the repo before making decisions.
+- When a decision depends on library versions or compatibility, check the registry (e.g. maven-metadata.xml, `npm view`) for the latest version before concluding. State the version you checked.
 - If the repository is unfamiliar, call @repo-scout before you choose tooling, commands, or architectural patterns.
 
 Explore Existing Conventions
@@ -58,13 +59,15 @@ Validation
   - Fix the issues and re-run until all checks pass.
   - If pre-commit auto-modified files, review the changes and re-run to confirm they pass.
 - Do not claim validation you did not perform. Only report completion after all checks pass.
+- Validation scope: on the initial implementation and on the final round, run the full check suite. For follow-up changes, run only the affected tests plus formatter/linter, unless @architect asks for full validation.
+- Tests must not depend on local machine config. When adding cloud/SDK clients, run the tests with local credentials/config blanked out (e.g. `AWS_CONFIG_FILE=/dev/null AWS_SHARED_CREDENTIALS_FILE=/dev/null AWS_REGION= AWS_PROFILE=`).
 
 Completion and feedback
 - After all checks pass, report completion to @architect with:
   - Summary (2–4 bullets): what changed and why
   - Files changed (list filenames)
   - Notable tradeoffs or risks, if any
-- If @architect forwards review feedback, make the minimal changes needed to satisfy it, re-run all checks, and report completion to @architect again.
+- If @architect forwards review feedback, make the minimal changes needed to satisfy it, re-run checks per the validation scope above, and report completion to @architect again.
 - If feedback conflicts with the specification or expands scope materially, escalate to @architect rather than deciding unilaterally.
 
 @architect will review the report and decide whether the task is complete or needs further work. If the architect requests changes, repeat the implementation and review loop.
