@@ -3,9 +3,7 @@
   "theme": {
     "name": "tokyonight"
   },
-  "plugins": [
-    "@slkiser/opencode-quota"
-  ],
+  "plugins": [],
   "diffs": {
     "wrap": "word"
   },
