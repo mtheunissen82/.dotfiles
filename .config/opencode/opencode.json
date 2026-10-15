@@ -86,17 +86,17 @@
       }
     }
   },
-  "default_agent": "architect",
+  "default_agent": "plan",
   "agents": {
     "plan": {
-      "description": "High-level system design and complex reasoning",
+      "description": "System design, architeture and complex reasoning",
       "mode": "primary",
       "model": "github-copilot/claude-opus-5.5#t0.1"
     },
     "build": {
-      "description": "Fast code implementation",
+      "description": "Solution implementer",
       "mode": "primary",
-      "model": "github-copilot/claude-haiku-5.5#t0.2"
+      "model": "github-copilot/claude-sonnet-5.5#t0.1"
     },
     "refactor": {
       "description": "Code refactoring and optimization",
