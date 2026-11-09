@@ -1,0 +1,15 @@
+#!/bin/bash
+
+VPN_TUNNEL="mac-emty"
+
+vpn_up() {
+    sudo wg-quick up "${1:-$VPN_TUNNEL}"
+}
+
+vpn_down() {
+    sudo wg-quick down "${1:-$VPN_TUNNEL}"
+}
+
+vpn_status() {
+    sudo wg show
+}
