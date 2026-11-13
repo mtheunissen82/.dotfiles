@@ -173,7 +173,7 @@
   "lsp": {
     "jdtls": {
       "settings": {
-        "java_home": "/Users/emty/.local/share/mise/installs/java/temurin-21.0.10+7.0.LTS",
+        "java_home": "/Users/emty/.local/share/mise/installs/java/temurin-25.0.4+7.0.LTS",
         "lombok_support": true,
       },
     },
