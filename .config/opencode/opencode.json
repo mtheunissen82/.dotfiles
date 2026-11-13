@@ -102,12 +102,6 @@
       "description": "Solution implementer",
       "mode": "primary",
       "model": "github-copilot/claude-opus-5.5#t0.1"
-    },
-    "review": {
-      "description": "Senior engineer code review",
-      "mode": "subagent",
-      "model": "github-copilot/gpt-6-astra#high",
-      "system": "You are a senior engineer performing a code review."
     }
   },
   "instructions": [
